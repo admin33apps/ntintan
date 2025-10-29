@@ -1,0 +1,4800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ntintan is the ultimate essential lifestyle destination offering quality products in hardware, home & beauty, fitness, services, automobiles, and clothing.">
+    <title>Ntintan | Essential Lifestyle Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #e6e6e6;
+            --highlight: #4a90e2;
+            --text: #333333;
+            --text-light: #888888;
+            --border: #e5e5e5;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --danger: #F44336;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.6;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        body.dark-mode {
+            --primary: #ffffff;
+            --secondary: #1a1a1a;
+            --accent: #2a2a2a;
+            --highlight: #4a90e2;
+            --text: #e0e0e0;
+            --text-light: #a0a0a0;
+            --border: #3a3a3a;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: var(--secondary);
+            border: 1px solid var(--primary);
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .header-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 11px;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .header-action:hover {
+            color: var(--highlight);
+        }
+        
+        .header-action i {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .cart-count {
+            background: var(--highlight);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+        
+        .header-bottom {
+            padding-top: 15px;
+        }
+        
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            padding: 10px 0;
+            display: block;
+            font-weight: 400;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        
+        .nav-link:hover {
+            color: var(--highlight);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--secondary);
+            color: var(--text);
+            min-width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 100;
+            padding: 20px 0;
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            padding: 10px 25px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            background: var(--secondary);
+            color: var(--text);
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--highlight);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            padding: 0 15px;
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: var(--highlight);
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-top: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+        }
+        
+        .search-result-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-result-item:hover {
+            background: var(--accent);
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-category {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .search-result-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            padding: 15px 0;
+            background: var(--accent);
+            font-size: 14px;
+        }
+        
+        .breadcrumb-list {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .breadcrumb-item:not(:last-child):after {
+            content: '/';
+            color: var(--text-light);
+        }
+        
+        .breadcrumb-link {
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb-link:hover {
+            color: var(--highlight);
+        }
+        
+        .breadcrumb-current {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            background: var(--primary);
+            color: var(--secondary);
+            overflow: hidden;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-content {
+            max-width: 500px;
+            margin-left: 10%;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .hero-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .hero-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .hero-control.active {
+            background: var(--secondary);
+        }
+        
+        /* Editorial Section */
+        .editorial {
+            padding: 80px 0;
+            background: var(--secondary);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .editorial-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .editorial-img {
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .editorial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .editorial-card:hover .editorial-img img {
+            transform: scale(1.05);
+        }
+        
+        .editorial-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: var(--secondary);
+        }
+        
+        .editorial-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        
+        .editorial-content p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* New Arrivals */
+        .new-arrivals {
+            padding: 80px 0;
+            background: var(--accent);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: var(--secondary);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--highlight);
+            color: white;
+            padding: 5px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .product-img {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-actions {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+        
+        .product-action {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .product-action:hover {
+            background: var(--highlight);
+            color: white;
+        }
+        
+        .product-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-category {
+            font-size: 11px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .product-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-weight: 400;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--primary);
+        }
+        
+        .original-price {
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 60px 0;
+            background: var(--secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 30px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        .service-card.active {
+            border: 1px solid var(--highlight);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover .service-icon,
+        .service-card.active .service-icon {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .service-card h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .service-details {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--accent);
+            border-radius: 8px;
+        }
+        
+        .service-card.active .service-details {
+            display: block;
+        }
+        
+        .service-details h4 {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .service-option {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .service-option:last-child {
+            border-bottom: none;
+        }
+        
+        .service-option h5 {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .service-option p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .service-price {
+            font-weight: 600;
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+        
+        .book-btn {
+            background: var(--highlight);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        /* Local Businesses Section */
+        .local-businesses {
+            padding: 60px 0;
+            background: var(--secondary);
+            overflow: hidden;
+        }
+        
+        .businesses-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .businesses-slider {
+            display: flex;
+            gap: 40px;
+            padding: 20px 0;
+            animation: scroll 30s linear infinite;
+        }
+        
+        .businesses-slider:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .business-item {
+            min-width: 200px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            padding: 15px;
+            transition: all 0.3s;
+            background-color: var(--accent);
+            cursor: pointer;
+        }
+        
+        .business-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .business-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .business-img {
+            max-width: 100%;
+            max-height: 105px;
+            object-fit: contain;
+        }
+        
+        .local-businesses-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 1px;
+            background: var(--secondary);
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            font-size: 14px;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: var(--highlight);
+            transform: translateY(-3px);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: var(--secondary);
+            border-radius: 0;
+        }
+        
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .newsletter-form button {
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background: var(--highlight);
+            color: var(--secondary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        
+        .footer-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .footer-actions p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            --light: #d8dbe0;
+            --dark: #28292c;
+        }
+        
+        .switch-label {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background-color: var(--dark);
+            border-radius: 15px;
+            cursor: pointer;
+            border: 1px solid var(--dark);
+        }
+        
+        .checkbox {
+            position: absolute;
+            display: none;
+        }
+        
+        .slider {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+        
+        .checkbox:checked ~ .slider {
+            background-color: var(--light);
+        }
+        
+        .slider::before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            box-shadow: inset 8px -2px 0px 0px var(--light);
+            background-color: var(--dark);
+            transition: 0.3s;
+        }
+        
+        .checkbox:checked ~ .slider::before {
+            transform: translateX(30px);
+            background-color: var(--dark);
+            box-shadow: none;
+        }
+        
+        /* Animated Button */
+        .btn-animated {
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            border: 1px solid #fefefe;
+            text-transform: uppercase;
+            color: #fefefe;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 14px;
+            transition: 0.3s;
+            background-color: transparent;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+        
+        .btn-animated::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
+            background-color: #212121;
+            transition: 0.3s ease-out;
+            transform: scaleY(1);
+        }
+        
+        .btn-animated::after {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: calc(100% - 20px);
+            background-color: #212121;
+            transition: 0.3s ease-out;
+            transform: scaleY(1);
+        }
+        
+        .btn-animated:hover::before {
+            transform: translateY(-10px);
+            height: 0;
+        }
+        
+        .btn-animated:hover::after {
+            transform: scaleX(0);
+            transition-delay: 0.15s;
+        }
+        
+        .btn-animated:hover {
+            border: 1px solid #fefefe;
+        }
+        
+        .btn-animated span {
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* Chat Assistant Styles */
+        .chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--highlight);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+        
+        .chat-header {
+            padding: 15px;
+            background: var(--primary);
+            color: var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 400;
+        }
+        
+        #closeChat {
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background: var(--accent);
+            color: var(--text);
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--border);
+        }
+        
+        #userInput {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 20px 0 0 20px;
+            font-size: 14px;
+        }
+        
+        #sendMessage {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: var(--secondary);
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid var(--border);
+            width: 500px;
+            max-width: 90%;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .close-modal {
+            color: var(--text-light);
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+        }
+        
+        .modal-title {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 400;
+            text-align: center;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .tab-content input, .tab-content select {
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            background: var(--secondary);
+            color: var(--text);
+            font-size: 14px;
+        }
+        
+        .tab-content button {
+            padding: 12px;
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+        
+        .tab-content button:hover {
+            background: var(--highlight);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .payment-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-option.active {
+            border-color: var(--highlight);
+            background: rgba(74, 144, 226, 0.1);
+        }
+        
+        .payment-option i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .payment-option.active i {
+            color: var(--highlight);
+        }
+        
+        .payment-option span {
+            display: block;
+            font-size: 14px;
+        }
+        
+        #cartItems {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cart-total {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        #checkoutForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        /* Waiting List Section */
+        .waiting-list {
+            padding: 80px 0;
+            background: var(--secondary);
+            text-align: center;
+        }
+        
+        .waiting-list-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .waiting-list h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .waiting-list p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .waiting-list-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .waiting-list-form input {
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            background: var(--secondary);
+            color: var(--text);
+            font-size: 14px;
+        }
+        
+        .waiting-list-form button {
+            padding: 12px;
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+        
+        .waiting-list-form button:hover {
+            background: var(--highlight);
+        }
+        
+        .waiting-list-benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .benefit-item {
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .benefit-item:hover {
+            border-color: var(--highlight);
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--highlight);
+        }
+        
+        .benefit-item h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .benefit-item p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* User Dashboard */
+        .user-dashboard {
+            display: none;
+            padding: 40px 0;
+            background: var(--secondary);
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-welcome {
+            font-size: 24px;
+            font-weight: 300;
+        }
+        
+        .dashboard-logout {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .dashboard-card {
+            padding: 25px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .dashboard-card:hover {
+            border-color: var(--highlight);
+            transform: translateY(-5px);
+        }
+        
+        .dashboard-card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .dashboard-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-card .btn {
+            font-size: 12px;
+            padding: 8px 15px;
+        }
+        
+        /* Custom Popup Styles */
+        .custom-popup {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .popup-content {
+            background-color: var(--secondary);
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid var(--border);
+            width: 400px;
+            max-width: 90%;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .popup-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+        
+        .popup-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        
+        .popup-message {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .popup-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        /* Business Listing Form */
+        .business-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .logo-preview {
+            width: 150px;
+            height: 150px;
+            border: 1px dashed var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            overflow: hidden;
+        }
+        
+        .logo-preview img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .location-info {
+            background: var(--accent);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        /* User Profile Sections */
+        .profile-section {
+            display: none;
+        }
+        
+        .profile-section.active {
+            display: block;
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        
+        .profile-sidebar {
+            border-right: 1px solid var(--border);
+            padding-right: 20px;
+        }
+        
+        .profile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .profile-nav-item {
+            padding: 12px 15px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .profile-nav-item.active {
+            border-color: var(--highlight);
+            background: rgba(74, 144, 226, 0.1);
+        }
+        
+        .profile-details {
+            padding: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+        
+        .order-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        .status-pending {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .status-completed {
+            background: var(--success);
+            color: white;
+        }
+        
+        .status-cancelled {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .address-card {
+            border: 1px solid var(--border);
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .address-default {
+            border-color: var(--highlight);
+        }
+        
+        .address-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .payment-card {
+            border: 1px solid var(--border);
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .payment-default {
+            border-color: var(--highlight);
+        }
+        
+        .wishlist-item {
+            display: flex;
+            gap: 20px;
+            padding: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+        
+        .wishlist-img {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
+        
+        .wishlist-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .wishlist-details {
+            flex: 1;
+        }
+        
+        /* Product Filtering and Sorting */
+        .filter-sort-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .filter-group label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            background: var(--secondary);
+            color: var(--text);
+            font-size: 14px;
+            min-width: 150px;
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sort-options label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .sort-options select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            background: var(--secondary);
+            color: var(--text);
+            font-size: 14px;
+        }
+        
+        /* Loading States */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--highlight);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            font-size: 18px;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .editorial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .waiting-list-benefits {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-right: 0;
+                padding-bottom: 20px;
+            }
+            
+            .filter-sort-container {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--secondary);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid var(--border);
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dropdown {
+                right: auto;
+                left: 0;
+            }
+            
+            .search-container {
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-wrap: wrap;
+            }
+            
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero-content {
+                margin-left: 5%;
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .chat-window {
+                width: 300px;
+                height: 400px;
+            }
+            
+            .modal-content {
+                width: 90%;
+            }
+            
+            .payment-options {
+                flex-direction: column;
+            }
+            
+            .waiting-list-benefits {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-options {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 14px;
+            }
+            
+            .editorial-grid,
+            .products-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-actions {
+                gap: 15px;
+            }
+            
+            .chat-window {
+                width: 90%;
+                right: 5%;
+                bottom: 80px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .popup-actions {
+                flex-direction: column;
+            }
+            
+            .search-container {
+                order: 3;
+                max-width: 100%;
+                margin: 15px 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo" id="homeLogo">NTINTAN</a>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" class="search-bar" id="searchInput" placeholder="Search for products, services, brands...">
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="header-action" id="accountIcon">
+                        <i class="fas fa-user"></i>
+                        <span id="accountText">Account</span>
+                    </div>
+                    
+                    <div class="header-action" id="bagIcon" style="position: relative;">
+                        <i class="fas fa-shopping-bag"></i>
+                        <div class="cart-count">0</div>
+                    </div>
+                    
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="header-bottom">
+                <nav class="main-nav">
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Hardware</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item" data-category="doors-windows">Doors & Windows</a>
+                            <a href="#" class="dropdown-item" data-category="stones-marbles">Stones & Marbles</a>
+                            <a href="#" class="dropdown-item" data-category="furniture">Furniture</a>
+                            <a href="#" class="dropdown-item" data-category="smart-home">Smart Home</a>
+                            <a href="#" class="dropdown-item" data-category="custom-products">Custom Products</a>
+                            <a href="#" class="dropdown-item" data-category="tools-equipment">Tools & Equipment</a>
+                            <a href="#" class="dropdown-item" data-category="plumbing-supplies">Plumbing Supplies</a>
+                            <a href="#" class="dropdown-item" data-category="electrical-supplies">Electrical Supplies</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Home & Beauty</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item" data-category="kitchen-indoor">Kitchen & Indoor</a>
+                            <a href="#" class="dropdown-item" data-category="perfumes">Perfumes</a>
+                            <a href="#" class="dropdown-item" data-category="art-decor">Art & Decor</a>
+                            <a href="#" class="dropdown-item" data-category="hair-beauty">Hair & Beauty</a>
+                            <a href="#" class="dropdown-item" data-category="bedding-bath">Bedding & Bath</a>
+                            <a href="#" class="dropdown-item" data-category="lighting">Lighting</a>
+                            <a href="#" class="dropdown-item" data-category="cleaning-supplies">Cleaning Supplies</a>
+                            <a href="#" class="dropdown-item" data-category="storage-solutions">Storage Solutions</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Fitness</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item" data-category="gym-equipment">Gym Equipment</a>
+                            <a href="#" class="dropdown-item" data-category="home-decor">Home Decor</a>
+                            <a href="#" class="dropdown-item" data-category="fitness-accessories">Fitness Accessories</a>
+                            <a href="#" class="dropdown-item" data-category="yoga-pilates">Yoga & Pilates</a>
+                            <a href="#" class="dropdown-item" data-category="cardio-equipment">Cardio Equipment</a>
+                            <a href="#" class="dropdown-item" data-category="strength-training">Strength Training</a>
+                            <a href="#" class="dropdown-item" data-category="sports-nutrition">Sports Nutrition</a>
+                            <a href="#" class="dropdown-item" data-category="activewear">Activewear</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Services</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item" data-category="chef-booking">Chef Booking</a>
+                            <a href="#" class="dropdown-item" data-category="salon-booking">Salon Booking</a>
+                            <a href="#" class="dropdown-item" data-category="hire-tailor">Hire a Tailor</a>
+                            <a href="#" class="dropdown-item" data-category="hire-driver">Hire a Driver</a>
+                            <a href="#" class="dropdown-item" data-category="hire-pilot">Hire a Pilot</a>
+                            <a href="#" class="dropdown-item" data-category="home-cleaning">Home Cleaning</a>
+                            <a href="#" class="dropdown-item" data-category="personal-training">Personal Training</a>
+                            <a href="#" class="dropdown-item" data-category="event-planning">Event Planning</a>
+                            <a href="#" class="dropdown-item" data-category="home-repair">Home Repair</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Automobiles</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item" data-category="new-vehicles">New Vehicles</a>
+                            <a href="#" class="dropdown-item" data-category="used-vehicles">Used Vehicles</a>
+                            <a href="#" class="dropdown-item" data-category="custom-built">Custom Built</a>
+                            <a href="#" class="dropdown-item" data-category="vehicle-hire">Vehicle Hire</a>
+                            <a href="#" class="dropdown-item" data-category="car-accessories">Car Accessories</a>
+                            <a href="#" class="dropdown-item" data-category="motorcycles">Motorcycles</a>
+                            <a href="#" class="dropdown-item" data-category="auto-parts">Auto Parts</a>
+                            <a href="#" class="dropdown-item" data-category="vehicle-maintenance">Vehicle Maintenance</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Clothing</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item" data-category="men">Men</a>
+                            <a href="#" class="dropdown-item" data-category="women">Women</a>
+                            <a href="#" class="dropdown-item" data-category="kids">Kids</a>
+                            <a href="#" class="dropdown-item" data-category="accessories">Accessories</a>
+                            <a href="#" class="dropdown-item" data-category="footwear">Footwear</a>
+                            <a href="#" class="dropdown-item" data-category="formal-wear">Formal Wear</a>
+                            <a href="#" class="dropdown-item" data-category="casual-wear">Casual Wear</a>
+                            <a href="#" class="dropdown-item" data-category="seasonal-collections">Seasonal Collections</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Brands</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-list" id="breadcrumbNav">
+                <!-- Breadcrumb items will be dynamically added -->
+            </nav>
+        </div>
+    </div>
+
+    <!-- User Dashboard -->
+    <section class="user-dashboard" id="userDashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2 class="dashboard-welcome">Welcome, <span id="userName">User</span></h2>
+                <button class="dashboard-logout" id="logoutBtn">Logout</button>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-sidebar">
+                    <div class="profile-nav">
+                        <div class="profile-nav-item active" data-section="profile">My Profile</div>
+                        <div class="profile-nav-item" data-section="orders">My Orders</div>
+                        <div class="profile-nav-item" data-section="wishlist">My Wishlist</div>
+                        <div class="profile-nav-item" data-section="services">My Services</div>
+                        <div class="profile-nav-item" data-section="addresses">My Addresses</div>
+                        <div class="profile-nav-item" data-section="payments">My Payment Methods</div>
+                    </div>
+                </div>
+                
+                <div class="profile-details">
+                    <!-- Profile Section -->
+                    <div class="profile-section active" id="profileSection">
+                        <div class="profile-header">
+                            <h3>My Profile</h3>
+                            <button class="btn" id="editProfileBtn">Edit Profile</button>
+                        </div>
+                        
+                        <div class="profile-info">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" id="profileFirstName" value="" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" id="profileLastName" value="" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="profileEmail" value="" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="profilePhone" value="" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input type="date" id="profileDob" value="" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-actions" id="profileActions" style="display: none; margin-top: 20px;">
+                            <button class="btn" id="saveProfileBtn">Save Changes</button>
+                            <button class="btn btn-outline" id="cancelProfileBtn">Cancel</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Orders Section -->
+                    <div class="profile-section" id="ordersSection">
+                        <div class="profile-header">
+                            <h3>My Orders</h3>
+                        </div>
+                        
+                        <div id="ordersList">
+                            <!-- Orders will be dynamically populated -->
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Section -->
+                    <div class="profile-section" id="wishlistSection">
+                        <div class="profile-header">
+                            <h3>My Wishlist</h3>
+                        </div>
+                        
+                        <div id="wishlistItems">
+                            <!-- Wishlist items will be dynamically populated -->
+                        </div>
+                    </div>
+                    
+                    <!-- Services Section -->
+                    <div class="profile-section" id="servicesSection">
+                        <div class="profile-header">
+                            <h3>My Services</h3>
+                        </div>
+                        
+                        <div id="servicesList">
+                            <!-- Services will be dynamically populated -->
+                        </div>
+                    </div>
+                    
+                    <!-- Addresses Section -->
+                    <div class="profile-section" id="addressesSection">
+                        <div class="profile-header">
+                            <h3>My Addresses</h3>
+                            <button class="btn" id="addAddressBtn">Add New Address</button>
+                        </div>
+                        
+                        <div id="addressesList">
+                            <!-- Addresses will be dynamically populated -->
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Methods Section -->
+                    <div class="profile-section" id="paymentsSection">
+                        <div class="profile-header">
+                            <h3>My Payment Methods</h3>
+                            <button class="btn" id="addPaymentBtn">Add New Payment Method</button>
+                        </div>
+                        
+                        <div id="paymentsList">
+                            <!-- Payment methods will be dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+            <div class="hero-content">
+                <h1>Elevate Your Space</h1>
+                <p>Discover essential hardware and building materials for your home. From quality doors to practical smart home solutions.</p>
+                <a href="#" class="btn-animated"><span>Explore Now</span></a>
+            </div>
+        </div>
+        
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+            <div class="hero-content">
+                <h1>Artful Living</h1>
+                <p>Transform your home with our curated collection of art, decor, and beauty products that reflect your unique style.</p>
+                <a href="#" class="btn-animated"><span>Discover More</span></a>
+            </div>
+        </div>
+        
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+            <div class="hero-content">
+                <h1>Automotive Excellence</h1>
+                <p>Explore our collection of reliable vehicles, from practical cars to custom builds, with professional driver services.</p>
+                <a href="#" class="btn-animated"><span>View Collection</span></a>
+            </div>
+        </div>
+        
+        <div class="hero-controls">
+            <div class="hero-control active"></div>
+            <div class="hero-control"></div>
+            <div class="hero-control"></div>
+        </div>
+    </section>
+
+    <!-- Editorial Section -->
+    <section class="editorial">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Journal</h2>
+            </div>
+            
+            <div class="editorial-grid">
+                <div class="editorial-card">
+                    <div class="editorial-img">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80" alt="Editorial">
+                    </div>
+                    <div class="editorial-content">
+                        <h3>Architectural Digest</h3>
+                        <p>Transforming spaces with quality materials</p>
+                    </div>
+                </div>
+                
+                <div class="editorial-card">
+                    <div class="editorial-img">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Editorial">
+                    </div>
+                    <div class="editorial-content">
+                        <h3>Beauty & Wellness</h3>
+                        <p>Curated products for your self-care ritual</p>
+                    </div>
+                </div>
+                
+                <div class="editorial-card">
+                    <div class="editorial-img">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Editorial">
+                    </div>
+                    <div class="editorial-content">
+                        <h3>Fitness Revolution</h3>
+                        <p>Elevate your workout with quality equipment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="new-arrivals">
+        <div class="container">
+            <div class="section-title">
+                <h2>New Arrivals</h2>
+            </div>
+            
+            <!-- Filter and Sort Options -->
+            <div class="filter-sort-container">
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Category</label>
+                        <select id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="hardware">Hardware</option>
+                            <option value="home">Home & Beauty</option>
+                            <option value="fitness">Fitness</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="automobiles">Automobiles</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="priceFilter">Price Range</label>
+                        <select id="priceFilter">
+                            <option value="all">All Prices</option>
+                            <option value="0-50">$0 - $50</option>
+                            <option value="50-200">$50 - $200</option>
+                            <option value="200-500">$200 - $500</option>
+                            <option value="500+">$500+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="brandFilter">Brand</label>
+                        <select id="brandFilter">
+                            <option value="all">All Brands</option>
+                            <option value="premium">Premium</option>
+                            <option value="standard">Standard</option>
+                            <option value="budget">Budget</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="sort-options">
+                    <label for="sortBy">Sort By:</label>
+                    <select id="sortBy">
+                        <option value="newest">Newest</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically populated -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn">View All New Arrivals</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" id="chefService">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Chef Booking</h3>
+                    <p>Book professional chefs for your events and special occasions with our quality service.</p>
+                    <div class="service-details">
+                        <h4>Chef Services</h4>
+                        <div class="service-option">
+                            <h5>Private Dinner Chef</h5>
+                            <p>Professional chef for intimate dinners at your home</p>
+                            <div class="service-price">$150 per event</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Catering Chef</h5>
+                            <p>Full catering service for events and parties</p>
+                            <div class="service-price">$300 per event</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Cooking Classes</h5>
+                            <p>Learn to cook with our professional chefs</p>
+                            <div class="service-price">$75 per session</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card" id="salonService">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Salon Services</h3>
+                    <p>Access quality beauty and grooming services with our curated salon partners.</p>
+                    <div class="service-details">
+                        <h4>Salon Services</h4>
+                        <div class="service-option">
+                            <h5>Haircut & Styling</h5>
+                            <p>Professional haircut and styling service</p>
+                            <div class="service-price">$45</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Manicure & Pedicure</h5>
+                            <p>Complete nail care and grooming</p>
+                            <div class="service-price">$60</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Facial Treatment</h5>
+                            <p>Revitalizing facial and skincare treatment</p>
+                            <div class="service-price">$80</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card" id="tailorService">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Tailor Services</h3>
+                    <p>Find skilled tailors for custom clothing and alterations with precision craftsmanship.</p>
+                    <div class="service-details">
+                        <h4>Tailor Services</h4>
+                        <div class="service-option">
+                            <h5>Custom Suit</h5>
+                            <p>Bespoke suit tailored to your measurements</p>
+                            <div class="service-price">$400</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Alterations</h5>
+                            <p>Professional clothing alterations and adjustments</p>
+                            <div class="service-price">$25 and up</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Custom Dress</h5>
+                            <p>Elegant dress made to your specifications</p>
+                            <div class="service-price">$350</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card" id="driverService">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Driver Hire</h3>
+                    <p>Book professional drivers for your transportation needs with reliable vehicles.</p>
+                    <div class="service-details">
+                        <h4>Driver Services</h4>
+                        <div class="service-option">
+                            <h5>Airport Transfer</h5>
+                            <p>Reliable airport pickup and drop-off service</p>
+                            <div class="service-price">$50 per trip</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>City Tour</h5>
+                            <p>Guided city tour with professional driver</p>
+                            <div class="service-price">$35 per hour</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Corporate Service</h5>
+                            <p>Professional driver for business meetings and events</p>
+                            <div class="service-price">$40 per hour</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card" id="pilotService">
+                    <div class="service-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Pilot Hire</h3>
+                    <p>Book experienced pilots for private flights and aviation services with safety and comfort.</p>
+                    <div class="service-details">
+                        <h4>Pilot Services</h4>
+                        <div class="service-option">
+                            <h5>Private Jet Pilot</h5>
+                            <p>Experienced pilot for private jet flights</p>
+                            <div class="service-price">$1,500 per flight</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Helicopter Pilot</h5>
+                            <p>Skilled pilot for helicopter tours and transfers</p>
+                            <div class="service-price">$800 per hour</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <div class="service-option">
+                            <h5>Flight Training</h5>
+                            <p>Professional flight instruction and training</p>
+                            <div class="service-price">$200 per hour</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Businesses Section -->
+    <section class="local-businesses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Support Your Local Business</h2>
+            </div>
+            
+            <p class="local-businesses-intro">
+                Discover and support amazing local businesses in your community. From artisanal crafts to professional services, 
+                these entrepreneurs are the heart of our local economy. Click on any business to learn more about their offerings.
+            </p>
+            
+            <div class="businesses-container">
+                <div class="businesses-slider">
+                    <div class="business-item">
+                        <div class="business-logo">Artisan Bakery</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Local Cafe</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Handmade Crafts</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Family Restaurant</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Independent Bookstore</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Local Florist</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Art Gallery</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Farmers Market</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Craft Brewery</div>
+                    </div>
+                    <div class="business-item">
+                        <div class="business-logo">Local Boutique</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn" id="listBusinessBtn">List Your Local Business</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waiting List Section -->
+    <section class="waiting-list" id="waitingListSection">
+        <div class="container">
+            <div class="waiting-list-content">
+                <h2>Join Our Exclusive Waiting List</h2>
+                <p>Be the first to access new products, exclusive deals, and special services. Join our waiting list today and get early access to our premium offerings.</p>
+                
+                <form class="waiting-list-form" id="waitingListForm">
+                    <input type="text" id="waitingListName" placeholder="Your Full Name" required>
+                    <input type="email" id="waitingListEmail" placeholder="Your Email Address" required>
+                    <select id="waitingListInterest" required>
+                        <option value="">Select Your Interest</option>
+                        <option value="hardware">Hardware & Building</option>
+                        <option value="home">Home & Beauty</option>
+                        <option value="fitness">Fitness & Lifestyle</option>
+                        <option value="services">Services</option>
+                        <option value="automobiles">Automobiles</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="all">All Categories</option>
+                    </select>
+                    <button type="submit">Join Waiting List</button>
+                </form>
+                
+                <div class="waiting-list-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Early Access</h4>
+                        <p>Be the first to shop new collections and limited edition products</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h4>Exclusive Discounts</h4>
+                        <p>Receive special offers and promotions before anyone else</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>VIP Treatment</h4>
+                        <p>Get priority customer service and personalized recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Ntintan</h3>
+                    <p style="color: #888; margin-bottom: 20px;">The ultimate destination for essential lifestyle products and services.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Hardware & Building</a></li>
+                        <li><a href="#">Home & Beauty</a></li>
+                        <li><a href="#">Fitness & Lifestyle</a></li>
+                        <li><a href="#">Automobiles</a></li>
+                        <li><a href="#">Clothing</a></li>
+                        <li><a href="#">All Brands</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Chef Booking</a></li>
+                        <li><a href="#">Salon Services</a></li>
+                        <li><a href="#">Tailor Services</a></li>
+                        <li><a href="#">Driver Hire</a></li>
+                        <li><a href="#">Pilot Hire</a></li>
+                        <li><a href="#">Gift Services</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p style="color: #888; margin-bottom: 15px;">Subscribe for exclusive updates and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                    
+                    <div class="footer-actions">
+                        <div>
+                            <p style="color: #888; margin-bottom: 10px;">Dark Mode</p>
+                            <div class="toggle-switch">
+                                <label class="switch-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ntintan. All rights reserved. <span style="margin: 0 10px;">|</span> Privacy Policy <span style="margin: 0 10px;">|</span> Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Assistant Chat -->
+    <div class="chat-bubble" id="chatBubble">
+        <i class="fas fa-robot"></i>
+    </div>
+    
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            AI Assistant
+            <button id="closeChat">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Account Modal -->
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Account</h2>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="signin">Sign In</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+            <div id="signin" class="tab-content active">
+                <form id="signinForm">
+                    <div class="form-group">
+                        <label for="signinEmail">Email Address</label>
+                        <input type="email" id="signinEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signinPassword">Password</label>
+                        <input type="password" id="signinPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit">Sign In</button>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a href="#" style="font-size: 14px; color: var(--highlight);">Forgot your password?</a>
+                    </div>
+                </form>
+            </div>
+            <div id="signup" class="tab-content">
+                <form id="signupForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" placeholder="First name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" placeholder="Last name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Your Shopping Bag</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal"></div>
+            <button id="checkoutBtn" class="btn" style="width: 100%;">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Checkout</h2>
+            
+            <div class="payment-options">
+                <div class="payment-option active" data-payment="card">
+                    <i class="fab fa-cc-visa"></i>
+                    <span>Credit/Debit Card</span>
+                </div>
+                <div class="payment-option" data-payment="mobile">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile Money</span>
+                </div>
+                <div class="payment-option" data-payment="bank">
+                    <i class="fas fa-university"></i>
+                    <span>Bank Transfer</span>
+                </div>
+                <div class="payment-option" data-payment="paypal">
+                    <i class="fab fa-paypal"></i>
+                    <span>PayPal</span>
+                </div>
+                <div class="payment-option" data-payment="crypto">
+                    <i class="fab fa-bitcoin"></i>
+                    <span>Cryptocurrency</span>
+                </div>
+            </div>
+            
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <input type="text" id="address" placeholder="Enter your address" required>
+                </div>
+                
+                <div id="cardPayment" class="payment-method">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="mobilePayment" class="payment-method" style="display: none;">
+                    <div class="form-group">
+                        <label for="mobileProvider">Mobile Provider</label>
+                        <select id="mobileProvider" required>
+                            <option value="">Select provider</option>
+                            <option value="mtn">MTN Mobile Money</option>
+                            <option value="airtel">Airtel Money</option>
+                            <option value="vodafone">Vodafone Cash</option>
+                            <option value="tigo">Tigo Pesa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <input type="tel" id="mobileNumber" placeholder="Enter your mobile number" required>
+                    </div>
+                </div>
+                
+                <div id="bankPayment" class="payment-method" style="display: none;">
+                    <div class="form-group">
+                        <label for="bankName">Bank Name</label>
+                        <select id="bankName" required>
+                            <option value="">Select bank</option>
+                            <option value="standard">Standard Chartered</option>
+                            <option value="barclays">Barclays Bank</option>
+                            <option value="absa">Absa Bank</option>
+                            <option value="equity">Equity Bank</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="accountNumber">Account Number</label>
+                        <input type="text" id="accountNumber" placeholder="Enter your account number" required>
+                    </div>
+                </div>
+                
+                <div id="paypalPayment" class="payment-method" style="display: none;">
+                    <div class="form-group">
+                        <label for="paypalEmail">PayPal Email</label>
+                        <input type="email" id="paypalEmail" placeholder="Enter your PayPal email" required>
+                    </div>
+                </div>
+                
+                <div id="cryptoPayment" class="payment-method" style="display: none;">
+                    <div class="form-group">
+                        <label for="cryptoWallet">Crypto Wallet Address</label>
+                        <input type="text" id="cryptoWallet" placeholder="Enter your wallet address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cryptoType">Cryptocurrency</label>
+                        <select id="cryptoType" required>
+                            <option value="">Select cryptocurrency</option>
+                            <option value="bitcoin">Bitcoin</option>
+                            <option value="ethereum">Ethereum</option>
+                            <option value="usdt">USDT</option>
+                            <option value="bnb">BNB</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Complete Purchase</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Business Listing Modal -->
+    <div id="businessModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">List Your Local Business</h2>
+            
+            <form class="business-form" id="businessForm">
+                <div class="form-group">
+                    <label for="businessName">Business Name</label>
+                    <input type="text" id="businessName" placeholder="Enter your business name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="businessCategory">Business Category</label>
+                    <select id="businessCategory" required>
+                        <option value="">Select category</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="retail">Retail</option>
+                        <option value="services">Services</option>
+                        <option value="arts">Arts & Crafts</option>
+                        <option value="health">Health & Wellness</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="businessDescription">Business Description</label>
+                    <textarea id="businessDescription" placeholder="Describe your business" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Business Logo</label>
+                    <div class="logo-preview" id="logoPreview">
+                        <span>Logo Preview</span>
+                    </div>
+                    <input type="file" id="logoUpload" accept="image/*" style="margin-top: 10px;">
+                </div>
+                
+                <div class="form-group">
+                    <label>Location</label>
+                    <div class="location-info" id="locationInfo">
+                        <p>Click the button below to get your current location</p>
+                        <button type="button" class="btn" id="getLocationBtn" style="margin-top: 10px;">Get My Location</button>
+                    </div>
+                    <input type="hidden" id="businessLatitude">
+                    <input type="hidden" id="businessLongitude">
+                </div>
+                
+                <div class="form-group">
+                    <label for="businessAddress">Business Address</label>
+                    <input type="text" id="businessAddress" placeholder="Enter your business address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="businessPhone">Contact Phone</label>
+                    <input type="tel" id="businessPhone" placeholder="Enter your business phone number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="businessEmail">Contact Email</label>
+                    <input type="email" id="businessEmail" placeholder="Enter your business email" required>
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Submit Business Listing</button>
+            </form>
+            
+            <p style="font-size: 12px; color: var(--text-light); margin-top: 15px; text-align: center;">
+                Note: All business listings are subject to review by our admin team before being published.
+            </p>
+        </div>
+    </div>
+
+    <!-- Custom Popup -->
+    <div id="customPopup" class="custom-popup">
+        <div class="popup-content">
+            <div class="popup-icon" id="popupIcon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="popup-title" id="popupTitle">Success</h3>
+            <p class="popup-message" id="popupMessage">Your action was completed successfully.</p>
+            <div class="popup-actions">
+                <button class="btn" id="popupOkBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div>Loading...</div>
+    </div>
+
+    <script>
+        // User Authentication System
+        let currentUser = null;
+        let users = JSON.parse(localStorage.getItem('ntintan_users')) || [];
+        let waitingList = JSON.parse(localStorage.getItem('ntintan_waiting_list')) || [];
+        let businessListings = JSON.parse(localStorage.getItem('ntintan_business_listings')) || [];
+
+        // Product Data - Expanded with products for all subcategories
+        const products = [
+            // Hardware Products
+            {
+                id: 1,
+                name: "Quality Wooden Door",
+                category: "hardware",
+                subcategory: "doors-windows",
+                price: 599,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80",
+                badge: "New"
+            },
+            {
+                id: 2,
+                name: "Marble Countertop",
+                category: "hardware",
+                subcategory: "stones-marbles",
+                price: 899,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1495856458515-0637185d0ddc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                badge: "New"
+            },
+            {
+                id: 3,
+                name: "Modern Dining Table",
+                category: "hardware",
+                subcategory: "furniture",
+                price: 1200,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 4,
+                name: "Smart Home Hub",
+                category: "hardware",
+                subcategory: "smart-home",
+                price: 299,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                badge: "Smart"
+            },
+            {
+                id: 5,
+                name: "Custom Cabinet Set",
+                category: "hardware",
+                subcategory: "custom-products",
+                price: 2500,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80"
+            },
+            {
+                id: 6,
+                name: "Professional Tool Kit",
+                category: "hardware",
+                subcategory: "tools-equipment",
+                price: 199,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80"
+            },
+            {
+                id: 7,
+                name: "Plumbing Fixture Set",
+                category: "hardware",
+                subcategory: "plumbing-supplies",
+                price: 150,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80"
+            },
+            {
+                id: 8,
+                name: "Electrical Wiring Kit",
+                category: "hardware",
+                subcategory: "electrical-supplies",
+                price: 89,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80"
+            },
+            
+            // Home & Beauty Products
+            {
+                id: 9,
+                name: "Sculptural Vase Collection",
+                category: "home",
+                subcategory: "art-decor",
+                price: 250,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                badge: "Limited"
+            },
+            {
+                id: 10,
+                name: "Quality Perfume Set",
+                category: "home",
+                subcategory: "perfumes",
+                price: 99,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                badge: "New"
+            },
+            {
+                id: 11,
+                name: "Quality Skincare Kit",
+                category: "home",
+                subcategory: "hair-beauty",
+                price: 149,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 12,
+                name: "Luxury Bedding Set",
+                category: "home",
+                subcategory: "bedding-bath",
+                price: 299,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 13,
+                name: "Designer Pendant Light",
+                category: "home",
+                subcategory: "lighting",
+                price: 189,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 14,
+                name: "Premium Cleaning Kit",
+                category: "home",
+                subcategory: "cleaning-supplies",
+                price: 79,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 15,
+                name: "Storage Organization Set",
+                category: "home",
+                subcategory: "storage-solutions",
+                price: 129,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 16,
+                name: "Modern Kitchen Set",
+                category: "home",
+                subcategory: "kitchen-indoor",
+                price: 599,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            
+            // Fitness Products
+            {
+                id: 17,
+                name: "Adjustable Dumbbell Set",
+                category: "fitness",
+                subcategory: "strength-training",
+                price: 199,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 18,
+                name: "Quality Treadmill",
+                category: "fitness",
+                subcategory: "cardio-equipment",
+                price: 1499,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1576678927484-cc907e89ef66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 19,
+                name: "Yoga Mat Set",
+                category: "fitness",
+                subcategory: "yoga-pilates",
+                price: 49,
+                brand: "budget",
+                image: "https://images.unsplash.com/photo-1585123334904-64500ccbf9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                badge: "New"
+            },
+            {
+                id: 20,
+                name: "Fitness Tracker",
+                category: "fitness",
+                subcategory: "fitness-accessories",
+                price: 129,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 21,
+                name: "Protein Powder",
+                category: "fitness",
+                subcategory: "sports-nutrition",
+                price: 39,
+                brand: "budget",
+                image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 22,
+                name: "Premium Activewear Set",
+                category: "fitness",
+                subcategory: "activewear",
+                price: 89,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 23,
+                name: "Home Gym Decor",
+                category: "fitness",
+                subcategory: "home-decor",
+                price: 59,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            
+            // Clothing Products
+            {
+                id: 24,
+                name: "Quality Cashmere Sweater",
+                category: "clothing",
+                subcategory: "men",
+                price: 185,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+                badge: "New"
+            },
+            {
+                id: 25,
+                name: "Elegant Evening Dress",
+                category: "clothing",
+                subcategory: "women",
+                price: 299,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                badge: "Limited"
+            },
+            {
+                id: 26,
+                name: "Kids Winter Jacket",
+                category: "clothing",
+                subcategory: "kids",
+                price: 79,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+            },
+            {
+                id: 27,
+                name: "Designer Handbag",
+                category: "clothing",
+                subcategory: "accessories",
+                price: 450,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 28,
+                name: "Leather Boots",
+                category: "clothing",
+                subcategory: "footwear",
+                price: 199,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+            },
+            {
+                id: 29,
+                name: "Business Suit",
+                category: "clothing",
+                subcategory: "formal-wear",
+                price: 599,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 30,
+                name: "Casual T-Shirt Pack",
+                category: "clothing",
+                subcategory: "casual-wear",
+                price: 49,
+                brand: "budget",
+                image: "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+            },
+            {
+                id: 31,
+                name: "Summer Collection Dress",
+                category: "clothing",
+                subcategory: "seasonal-collections",
+                price: 129,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            
+            // Automobiles Products
+            {
+                id: 32,
+                name: "Reliable Sedan",
+                category: "automobiles",
+                subcategory: "new-vehicles",
+                price: 35000,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                badge: "Exclusive"
+            },
+            {
+                id: 33,
+                name: "Sports Coupe",
+                category: "automobiles",
+                subcategory: "new-vehicles",
+                price: 60000,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1606890658317-7d14490dcb4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                badge: "Exclusive"
+            },
+            {
+                id: 34,
+                name: "Family SUV",
+                category: "automobiles",
+                subcategory: "used-vehicles",
+                price: 25000,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 35,
+                name: "Custom Sports Car",
+                category: "automobiles",
+                subcategory: "custom-built",
+                price: 120000,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1606890658317-7d14490dcb4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 36,
+                name: "Luxury Car Rental",
+                category: "automobiles",
+                subcategory: "vehicle-hire",
+                price: 299,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 37,
+                name: "Car Accessories Kit",
+                category: "automobiles",
+                subcategory: "car-accessories",
+                price: 199,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 38,
+                name: "Adventure Motorcycle",
+                category: "automobiles",
+                subcategory: "motorcycles",
+                price: 15000,
+                brand: "premium",
+                image: "https://images.unsplash.com/photo-1606890658317-7d14490dcb4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 39,
+                name: "Engine Parts Set",
+                category: "automobiles",
+                subcategory: "auto-parts",
+                price: 899,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            },
+            {
+                id: 40,
+                name: "Maintenance Service Package",
+                category: "automobiles",
+                subcategory: "vehicle-maintenance",
+                price: 299,
+                brand: "standard",
+                image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            }
+        ];
+
+        // Search Data
+        const searchData = [
+            ...products,
+            { name: "Chef Booking", category: "services", type: "service" },
+            { name: "Salon Services", category: "services", type: "service" },
+            { name: "Tailor Services", category: "services", type: "service" },
+            { name: "Driver Hire", category: "services", type: "service" },
+            { name: "Pilot Hire", category: "services", type: "service" },
+            { name: "Home Cleaning", category: "services", type: "service" },
+            { name: "Personal Training", category: "services", type: "service" }
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for existing user session
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateUserInterface();
+            }
+
+            // Initialize products
+            displayProducts(products);
+            
+            // Initialize breadcrumb
+            updateBreadcrumb(['Home']);
+            
+            // Add event listeners for dropdown items
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    filterBySubcategory(category);
+                });
+            });
+            
+            // Make logo a home button
+            document.getElementById('homeLogo').addEventListener('click', function(e) {
+                e.preventDefault();
+                updateBreadcrumb(['Home']);
+                displayProducts(products);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('active');
+        });
+
+        // Hero Slider
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroControls = document.querySelectorAll('.hero-control');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            heroControls.forEach(control => control.classList.remove('active'));
+            
+            currentSlide = (n + heroSlides.length) % heroSlides.length;
+            
+            heroSlides[currentSlide].classList.add('active');
+            heroControls[currentSlide].classList.add('active');
+        }
+
+        heroControls.forEach((control, index) => {
+            control.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Auto advance slides
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.querySelector('.toggle-switch .checkbox');
+        darkModeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const searchBtn = document.getElementById('searchBtn');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            const filteredResults = searchData.filter(item => 
+                item.name.toLowerCase().includes(query) || 
+                item.category.toLowerCase().includes(query)
+            );
+            
+            displaySearchResults(filteredResults);
+        });
+
+        searchInput.addEventListener('focus', function() {
+            const query = this.value.trim().toLowerCase();
+            if (query.length >= 2) {
+                const filteredResults = searchData.filter(item => 
+                    item.name.toLowerCase().includes(query) || 
+                    item.category.toLowerCase().includes(query)
+                );
+                displaySearchResults(filteredResults);
+            }
+        });
+
+        searchBtn.addEventListener('click', function() {
+            performSearch();
+        });
+
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            if (query.length === 0) return;
+            
+            // Show loading state
+            showLoading();
+            
+            // Simulate search delay
+            setTimeout(() => {
+                const filteredResults = searchData.filter(item => 
+                    item.name.toLowerCase().includes(query) || 
+                    item.category.toLowerCase().includes(query)
+                );
+                
+                // Update breadcrumb
+                updateBreadcrumb(['Home', 'Search Results']);
+                
+                // Display search results in products grid
+                if (filteredResults.length > 0) {
+                    displayProducts(filteredResults.filter(item => item.type !== 'service'));
+                    
+                    // Show services separately if any
+                    const serviceResults = filteredResults.filter(item => item.type === 'service');
+                    if (serviceResults.length > 0) {
+                        // You could display services in a separate section
+                        showPopup('Search Results', `Found ${filteredResults.length} results for "${query}"`, 'info');
+                    }
+                } else {
+                    document.getElementById('productsGrid').innerHTML = '<p style="text-align: center; padding: 40px;">No results found for your search.</p>';
+                }
+                
+                // Hide search results dropdown
+                searchResults.style.display = 'none';
+                
+                // Hide loading
+                hideLoading();
+            }, 1000);
+        }
+
+        function displaySearchResults(results) {
+            searchResults.innerHTML = '';
+            
+            if (results.length === 0) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            results.slice(0, 8).forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.classList.add('search-result-item');
+                
+                resultItem.innerHTML = `
+                    <div class="search-result-category">${item.type === 'service' ? 'Service' : 'Product'} • ${item.category}</div>
+                    <div class="search-result-name">${item.name}</div>
+                `;
+                
+                resultItem.addEventListener('click', function() {
+                    searchInput.value = item.name;
+                    searchResults.style.display = 'none';
+                    performSearch();
+                });
+                
+                searchResults.appendChild(resultItem);
+            });
+            
+            searchResults.style.display = 'block';
+        }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Breadcrumb Navigation
+        function updateBreadcrumb(items) {
+            const breadcrumbNav = document.getElementById('breadcrumbNav');
+            breadcrumbNav.innerHTML = '';
+            
+            items.forEach((item, index) => {
+                const breadcrumbItem = document.createElement('div');
+                breadcrumbItem.classList.add('breadcrumb-item');
+                
+                if (index === items.length - 1) {
+                    // Last item (current page)
+                    breadcrumbItem.innerHTML = `<span class="breadcrumb-current">${item}</span>`;
+                } else {
+                    // Navigable item
+                    breadcrumbItem.innerHTML = `<a href="#" class="breadcrumb-link">${item}</a>`;
+                }
+                
+                breadcrumbNav.appendChild(breadcrumbItem);
+            });
+        }
+
+        // Product Filtering and Sorting
+        const categoryFilter = document.getElementById('categoryFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const brandFilter = document.getElementById('brandFilter');
+        const sortBy = document.getElementById('sortBy');
+
+        // Add event listeners to filters
+        [categoryFilter, priceFilter, brandFilter, sortBy].forEach(filter => {
+            filter.addEventListener('change', applyFilters);
+        });
+
+        function applyFilters() {
+            // Show loading state
+            showLoading();
+            
+            // Simulate filter delay
+            setTimeout(() => {
+                let filteredProducts = [...products];
+                
+                // Apply category filter
+                if (categoryFilter.value !== 'all') {
+                    filteredProducts = filteredProducts.filter(product => product.category === categoryFilter.value);
+                }
+                
+                // Apply price filter
+                if (priceFilter.value !== 'all') {
+                    const priceRange = priceFilter.value;
+                    if (priceRange === '0-50') {
+                        filteredProducts = filteredProducts.filter(product => product.price <= 50);
+                    } else if (priceRange === '50-200') {
+                        filteredProducts = filteredProducts.filter(product => product.price > 50 && product.price <= 200);
+                    } else if (priceRange === '200-500') {
+                        filteredProducts = filteredProducts.filter(product => product.price > 200 && product.price <= 500);
+                    } else if (priceRange === '500+') {
+                        filteredProducts = filteredProducts.filter(product => product.price > 500);
+                    }
+                }
+                
+                // Apply brand filter
+                if (brandFilter.value !== 'all') {
+                    filteredProducts = filteredProducts.filter(product => product.brand === brandFilter.value);
+                }
+                
+                // Apply sorting
+                if (sortBy.value === 'price-low') {
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                } else if (sortBy.value === 'price-high') {
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                } else if (sortBy.value === 'name') {
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                }
+                // 'newest' is the default order
+                
+                // Display filtered products
+                displayProducts(filteredProducts);
+                
+                // Hide loading
+                hideLoading();
+            }, 500);
+        }
+
+        // Filter by subcategory
+        function filterBySubcategory(subcategory) {
+            const filteredProducts = products.filter(product => product.subcategory === subcategory);
+            updateBreadcrumb(['Home', 'Products', subcategory.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')]);
+            displayProducts(filteredProducts);
+        }
+
+        function displayProducts(productsToDisplay) {
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.innerHTML = '';
+            
+            if (productsToDisplay.length === 0) {
+                productsGrid.innerHTML = '<p style="text-align: center; padding: 40px; grid-column: 1 / -1;">No products match your filters.</p>';
+                return;
+            }
+            
+            productsToDisplay.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                
+                productCard.innerHTML = `
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    <div class="product-img">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-actions">
+                            <div class="product-action">
+                                <i class="far fa-heart"></i>
+                            </div>
+                            <div class="product-action add-to-cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="product-action">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">
+                            <span class="current-price">$${product.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Reattach event listeners to product actions
+            attachProductActionListeners();
+        }
+
+        function attachProductActionListeners() {
+            document.querySelectorAll('.product-action').forEach(action => {
+                action.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const icon = this.querySelector('i');
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    const productPrice = productCard.querySelector('.current-price').textContent.replace('$', '').replace(',', '');
+                    
+                    if (icon.classList.contains('fa-heart')) {
+                        if (icon.classList.contains('far')) {
+                            icon.classList.remove('far');
+                            icon.classList.add('fas');
+                            icon.style.color = 'var(--highlight)';
+                            
+                            // Add to wishlist
+                            if (currentUser) {
+                                const product = products.find(p => p.name === productName);
+                                addToWishlist(product);
+                            } else {
+                                showPopup('Sign In Required', 'Please sign in to add items to your wishlist.', 'error');
+                            }
+                        } else {
+                            icon.classList.remove('fas');
+                            icon.classList.add('far');
+                            icon.style.color = '';
+                            
+                            // Remove from wishlist
+                            if (currentUser) {
+                                removeFromWishlist(productName);
+                            }
+                        }
+                    }
+                    
+                    if (icon.classList.contains('fa-shopping-bag')) {
+                        cart.push({ name: productName, price: parseFloat(productPrice) });
+                        updateCart();
+                        
+                        // Show notification
+                        showPopup('Item Added', `${productName} has been added to your bag`, 'success');
+                    }
+                    
+                    if (icon.classList.contains('fa-eye')) {
+                        showPopup('Quick View', `Quick view feature for ${productName} coming soon!`, 'info');
+                    }
+                });
+            });
+        }
+
+        // Cart Functionality
+        let cart = [];
+        const cartCount = document.querySelector('.cart-count');
+
+        function updateCart() {
+            cartCount.textContent = cart.length;
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Load cart from localStorage
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            updateCart();
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // AI Assistant Chat Functionality
+        const chatBubble = document.getElementById('chatBubble');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChat = document.getElementById('closeChat');
+        const userInput = document.getElementById('userInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatMessages = document.getElementById('chatMessages');
+
+        chatBubble.addEventListener('click', () => {
+            chatWindow.style.display = 'flex';
+            if (chatMessages.children.length === 0) {
+                addBotMessage('Hello! I\'m Kwaku, your AI Assistant at Ntintan. How can I help you today? I can assist with product information, delivery options, service bookings, and more. What would you like to know?');
+            }
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWindow.style.display = 'none';
+        });
+
+        sendMessage.addEventListener('click', sendUserMessage);
+
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendUserMessage();
+            }
+        });
+
+        function sendUserMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                addUserMessage(message);
+                userInput.value = '';
+                // Simulate AI response
+                setTimeout(() => {
+                    const response = getAIResponse(message.toLowerCase());
+                    addBotMessage(response);
+                }, 500);
+            }
+        }
+
+        function addUserMessage(message) {
+            const div = document.createElement('div');
+            div.classList.add('message', 'user-message');
+            div.textContent = message;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addBotMessage(message) {
+            const div = document.createElement('div');
+            div.classList.add('message', 'bot-message');
+            div.textContent = message;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getAIResponse(query) {
+            // More responsive AI with better context understanding
+            if (query.includes('delivery') || query.includes('shipping') || query.includes('ship')) {
+                return 'We offer multiple delivery options:\n- Standard delivery: 3-5 business days, free on orders over $50\n- Express delivery: 1-2 business days, $15 fee\n- Same-day delivery: Available in select areas, $25 fee\n\nDelivery times may vary based on your location and product availability.';
+            } else if (query.includes('return') || query.includes('refund') || query.includes('exchange')) {
+                return 'Our return policy allows returns within 30 days of receipt for most items in original condition. Some exceptions apply for custom products and perishable items. To initiate a return, please visit our Returns page or contact customer service. Refunds are processed within 5-7 business days after we receive your return.';
+            } else if (query.includes('navigate') || query.includes('find') || query.includes('where') || query.includes('how to find')) {
+                if (query.includes('hardware')) {
+                    return 'You can find our Hardware section in the main menu. It includes categories like Doors & Windows, Stones & Marbles, Furniture, Smart Home solutions, Tools & Equipment, and more. Each category has multiple subcategories to help you find exactly what you need.';
+                } else if (query.includes('clothing') || query.includes('fashion')) {
+                    return 'Our Clothing section is organized by gender (Men, Women, Kids) and then by type (Accessories, Footwear, Formal Wear, Casual Wear). You can also browse our seasonal collections for the latest trends.';
+                } else if (query.includes('services') || query.includes('booking')) {
+                    return 'Our Services include Chef Booking, Salon Services, Tailor Services, Driver Hire, Pilot Hire, and more. Click on any service to see detailed options, pricing, and availability. You can book appointments directly through our website.';
+                } else if (query.includes('pilot') || query.includes('flight') || query.includes('plane')) {
+                    return 'You can find our Pilot Hire service in the Services section. We offer private jet pilots, helicopter pilots, and flight training services. Click on the Pilot Hire service card to see all available options and pricing.';
+                } else {
+                    return 'Our website is organized into six main categories: Hardware, Home & Beauty, Fitness, Services, Automobiles, and Clothing. Each category has multiple subcategories. Use the navigation menu at the top to explore, or tell me specifically what you\'re looking for so I can guide you better.';
+                }
+            } else if (query.includes('price') || query.includes('cost') || query.includes('how much')) {
+                return 'Prices vary by product and are clearly displayed on each product page. We offer competitive pricing and occasional promotions. For service pricing, click on the service you\'re interested in to see detailed pricing options. If you have a specific product or service in mind, let me know and I can provide more detailed pricing information.';
+            } else if (query.includes('service') || query.includes('booking') || query.includes('hire')) {
+                if (query.includes('pilot') || query.includes('flight')) {
+                    return 'We offer Pilot Hire services including:\n- Private Jet Pilot: $1,500 per flight\n- Helicopter Pilot: $800 per hour\n- Flight Training: $200 per hour\n\nClick on the Pilot Hire service card to book or get more details.';
+                } else if (query.includes('chef') || query.includes('cook')) {
+                    return 'We offer Chef Booking services including:\n- Private Dinner Chef: $150 per event\n- Catering Chef: $300 per event\n- Cooking Classes: $75 per session\n\nClick on the Chef Booking service card to book or get more details.';
+                } else if (query.includes('driver') || query.includes('car')) {
+                    return 'We offer Driver Hire services including:\n- Airport Transfer: $50 per trip\n- City Tour: $35 per hour\n- Corporate Service: $40 per hour\n\nClick on the Driver Hire service card to book or get more details.';
+                } else {
+                    return 'We offer various services including Chef Booking, Salon Services, Tailor Services, Driver Hire, and Pilot Hire. Each service has multiple options with different pricing. Click on the service cards in our Services section to see all available options, detailed descriptions, and to book appointments. Our services are provided by verified professionals.';
+                }
+            } else if (query.includes('payment') || query.includes('pay') || query.includes('card') || query.includes('credit')) {
+                return 'We accept multiple payment methods for your convenience:\n- Credit/Debit Cards (Visa, MasterCard, American Express)\n- Mobile Money (MTN, Airtel, Vodafone, Tigo)\n- Bank Transfers\n- PayPal\n- Cryptocurrency (Bitcoin, Ethereum, USDT, BNB)\n- Cash on Delivery (available for select areas)\n\nAll payments are processed securely through our encrypted payment gateway.';
+            } else if (query.includes('contact') || query.includes('help') || query.includes('support') || query.includes('customer service')) {
+                return 'You can contact our customer service team through:\n- Email: support@ntintan.com\n- Phone: +1-800-NTINTAN\n- Live Chat: Available during business hours\n- In-person: Visit our flagship store at 123 Lifestyle Avenue\n\nOur customer service hours are Monday-Friday 9AM-6PM and Saturday 10AM-4PM.';
+            } else if (query.includes('product') || query.includes('item') || query.includes('buy') || query.includes('purchase')) {
+                return 'We offer a wide range of products across multiple categories. Could you please specify which type of product you\'re interested in? For example, are you looking for home improvement items, clothing, fitness equipment, automobiles, or something else? This will help me provide more specific information.';
+            } else if (query.includes('hello') || query.includes('hi') || query.includes('hey') || query.includes('greetings')) {
+                return 'Hello! Welcome to Ntintan, your essential lifestyle destination. I\'m here to help you find products, book services, or answer any questions you might have. How can I assist you today?';
+            } else if (query.includes('thank') || query.includes('thanks')) {
+                return 'You\'re welcome! Is there anything else I can help you with today?';
+            } else if (query.includes('bye') || query.includes('goodbye') || query.includes('see you')) {
+                return 'Thank you for visiting Ntintan! Have a wonderful day. Feel free to come back if you need any assistance.';
+            } else {
+                return 'I\'m here to help with any questions about our products, services, delivery, payment options, or navigation. Could you please provide more details about what you\'re looking for? For example, you could ask about specific products, service bookings, delivery options, or payment methods.';
+            }
+        }
+
+        // Modal Functionality
+        const modals = document.querySelectorAll('.modal');
+        const closeModals = document.querySelectorAll('.close-modal');
+
+        closeModals.forEach(close => {
+            close.addEventListener('click', () => {
+                modals.forEach(modal => modal.style.display = 'none');
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            modals.forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Account Modal Tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Update active tab button
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show active tab content
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Account Modal
+        document.getElementById('accountIcon').addEventListener('click', () => {
+            document.getElementById('accountModal').style.display = 'block';
+        });
+
+        // Sign In Form
+        document.getElementById('signinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('signinEmail').value;
+            const password = document.getElementById('signinPassword').value;
+            
+            // Validate credentials
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                updateUserInterface();
+                document.getElementById('accountModal').style.display = 'none';
+                showPopup('Signed In', 'You have successfully signed in to your account!', 'success');
+                // Reset form
+                this.reset();
+            } else {
+                showPopup('Sign In Failed', 'Invalid email or password. Please try again.', 'error');
+            }
+        });
+
+        // Sign Up Form
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Basic validation
+            if (password !== confirmPassword) {
+                showPopup('Sign Up Failed', 'Passwords do not match!', 'error');
+                return;
+            }
+            
+            // Check if user already exists
+            if (users.find(u => u.email === email)) {
+                showPopup('Sign Up Failed', 'An account with this email already exists. Please sign in instead.', 'error');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                firstName,
+                lastName,
+                email,
+                password,
+                phone: '',
+                dob: '',
+                addresses: [],
+                paymentMethods: [],
+                orders: [],
+                wishlist: [],
+                services: [],
+                createdAt: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('ntintan_users', JSON.stringify(users));
+            
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            updateUserInterface();
+            
+            showPopup('Account Created', 'Your account has been created successfully!', 'success');
+            document.getElementById('accountModal').style.display = 'none';
+            // Reset form
+            this.reset();
+        });
+
+        // Logout Functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateUserInterface();
+            showPopup('Signed Out', 'You have been logged out successfully.', 'info');
+        });
+
+        // Update User Interface based on authentication status
+        function updateUserInterface() {
+            const accountText = document.getElementById('accountText');
+            const userDashboard = document.getElementById('userDashboard');
+            const waitingListSection = document.getElementById('waitingListSection');
+            
+            if (currentUser) {
+                accountText.textContent = currentUser.firstName;
+                userDashboard.style.display = 'block';
+                waitingListSection.style.display = 'none';
+                document.getElementById('userName').textContent = currentUser.firstName;
+                
+                // Populate user profile data
+                document.getElementById('profileFirstName').value = currentUser.firstName;
+                document.getElementById('profileLastName').value = currentUser.lastName;
+                document.getElementById('profileEmail').value = currentUser.email;
+                document.getElementById('profilePhone').value = currentUser.phone || '';
+                document.getElementById('profileDob').value = currentUser.dob || '';
+                
+                // Load user data
+                loadUserOrders();
+                loadUserWishlist();
+                loadUserServices();
+                loadUserAddresses();
+                loadUserPaymentMethods();
+            } else {
+                accountText.textContent = 'Account';
+                userDashboard.style.display = 'none';
+                waitingListSection.style.display = 'block';
+            }
+        }
+
+        // Waiting List Form
+        document.getElementById('waitingListForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('waitingListName').value;
+            const email = document.getElementById('waitingListEmail').value;
+            const interest = document.getElementById('waitingListInterest').value;
+            
+            // Check if already on waiting list
+            if (waitingList.find(w => w.email === email)) {
+                showPopup('Already Registered', 'You are already on our waiting list!', 'info');
+                return;
+            }
+            
+            // Add to waiting list
+            const newWaitlistEntry = {
+                id: Date.now(),
+                name,
+                email,
+                interest,
+                joinedAt: new Date().toISOString()
+            };
+            
+            waitingList.push(newWaitlistEntry);
+            localStorage.setItem('ntintan_waiting_list', JSON.stringify(waitingList));
+            
+            showPopup('Thank You', 'Thank you for joining our waiting list! You will be notified about exclusive offers and early access opportunities.', 'success');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Cart Modal
+        document.getElementById('bagIcon').addEventListener('click', () => {
+            displayCart();
+            document.getElementById('cartModal').style.display = 'block';
+        });
+
+        function displayCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            cartItemsDiv.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="text-align: center; padding: 20px;">Your bag is empty</p>';
+                document.getElementById('cartTotal').textContent = '';
+                document.getElementById('checkoutBtn').style.display = 'none';
+                return;
+            }
+            
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('cart-item');
+                itemDiv.innerHTML = `
+                    <div>
+                        <div style="font-weight: 500;">${item.name}</div>
+                        <div style="font-size: 14px; color: var(--text-light);">$${item.price.toLocaleString()}</div>
+                    </div>
+                    <div>
+                        <button class="remove-item" data-index="${index}" style="background: none; border: none; color: var(--danger); cursor: pointer;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+                total += item.price;
+            });
+            
+            document.getElementById('cartTotal').textContent = `Total: $${total.toLocaleString()}`;
+            document.getElementById('checkoutBtn').style.display = 'block';
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCart();
+                    displayCart();
+                });
+            });
+        }
+
+        // Checkout
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            if (cart.length === 0) {
+                showPopup('Empty Cart', 'Your cart is empty!', 'error');
+                return;
+            }
+            
+            document.getElementById('cartModal').style.display = 'none';
+            document.getElementById('checkoutModal').style.display = 'block';
+        });
+
+        // Payment Method Selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+                
+                const paymentMethod = this.getAttribute('data-payment');
+                document.querySelectorAll('.payment-method').forEach(method => method.style.display = 'none');
+                document.getElementById(paymentMethod + 'Payment').style.display = 'block';
+            });
+        });
+
+        // Checkout Form
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get selected payment method
+            const selectedPayment = document.querySelector('.payment-option.active').getAttribute('data-payment');
+            let paymentDetails = '';
+            
+            if (selectedPayment === 'card') {
+                paymentDetails = `Card ending in ${document.getElementById('cardNumber').value.slice(-4)}`;
+            } else if (selectedPayment === 'mobile') {
+                paymentDetails = `${document.getElementById('mobileProvider').value} - ${document.getElementById('mobileNumber').value}`;
+            } else if (selectedPayment === 'bank') {
+                paymentDetails = `${document.getElementById('bankName').value} - ${document.getElementById('accountNumber').value}`;
+            } else if (selectedPayment === 'paypal') {
+                paymentDetails = `PayPal - ${document.getElementById('paypalEmail').value}`;
+            } else if (selectedPayment === 'crypto') {
+                paymentDetails = `${document.getElementById('cryptoType').value} - ${document.getElementById('cryptoWallet').value.slice(0, 10)}...`;
+            }
+            
+            // Calculate total
+            let total = 0;
+            cart.forEach(item => total += item.price);
+            
+            // Create order
+            if (currentUser) {
+                const order = {
+                    id: Date.now(),
+                    items: [...cart],
+                    total: total,
+                    status: 'pending',
+                    paymentMethod: selectedPayment,
+                    paymentDetails: paymentDetails,
+                    shippingAddress: document.getElementById('address').value,
+                    orderDate: new Date().toISOString()
+                };
+                
+                currentUser.orders.push(order);
+                // Update user in localStorage
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex] = currentUser;
+                    localStorage.setItem('ntintan_users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            }
+            
+            showPopup('Purchase Completed', `Your purchase has been completed successfully!\n\nTotal: $${total.toLocaleString()}\nPayment Method: ${paymentDetails}\n\nThank you for shopping with Ntintan!`, 'success');
+            
+            // Clear cart and close modal
+            cart = [];
+            updateCart();
+            document.getElementById('checkoutModal').style.display = 'none';
+            this.reset();
+        });
+
+        // Service Cards Expansion
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Close all other service cards
+                document.querySelectorAll('.service-card').forEach(c => {
+                    if (c !== this) {
+                        c.classList.remove('active');
+                    }
+                });
+                
+                // Toggle this service card
+                this.classList.toggle('active');
+            });
+        });
+
+        // Book Service Buttons
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent triggering the service card click
+                const serviceName = this.closest('.service-option').querySelector('h5').textContent;
+                const servicePrice = this.closest('.service-option').querySelector('.service-price').textContent;
+                
+                if (currentUser) {
+                    // Add service to user's services
+                    const service = {
+                        id: Date.now(),
+                        name: serviceName,
+                        price: servicePrice,
+                        status: 'booked',
+                        bookingDate: new Date().toISOString()
+                    };
+                    
+                    currentUser.services.push(service);
+                    // Update user in localStorage
+                    const userIndex = users.findIndex(u => u.id === currentUser.id);
+                    if (userIndex !== -1) {
+                        users[userIndex] = currentUser;
+                        localStorage.setItem('ntintan_users', JSON.stringify(users));
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    }
+                    
+                    showPopup('Service Booked', `Booking request for: ${serviceName}\n${servicePrice}\n\nOur team will contact you shortly to confirm your appointment.`, 'success');
+                } else {
+                    showPopup('Sign In Required', 'Please sign in to book services.', 'error');
+                }
+            });
+        });
+
+        // Local Business Items Click Handler
+        document.querySelectorAll('.business-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const businessName = this.querySelector('.business-logo').textContent;
+                showPopup('Local Business', `Thank you for your interest in ${businessName}! We'll connect you with this local business shortly. Supporting local businesses helps strengthen our community!`, 'info');
+            });
+        });
+
+        // Duplicate businesses for infinite scroll effect
+        const businessesSlider = document.querySelector('.businesses-slider');
+        const businessesItems = businessesSlider.innerHTML;
+        businessesSlider.innerHTML += businessesItems;
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                showPopup('Newsletter Subscription', `Thank you for subscribing with ${email}! You'll receive our latest updates and offers.`, 'success');
+                this.reset();
+            }
+        });
+
+        // Business Listing Modal
+        document.getElementById('listBusinessBtn').addEventListener('click', () => {
+            document.getElementById('businessModal').style.display = 'block';
+        });
+
+        // Business Logo Upload
+        document.getElementById('logoUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const logoPreview = document.getElementById('logoPreview');
+                    logoPreview.innerHTML = `<img src="${e.target.result}" alt="Business Logo">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Get Location for Business
+        document.getElementById('getLocationBtn').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        
+                        document.getElementById('businessLatitude').value = lat;
+                        document.getElementById('businessLongitude').value = lng;
+                        
+                        // Use reverse geocoding to get address (simulated)
+                        document.getElementById('locationInfo').innerHTML = `
+                            <p><strong>Location captured successfully!</strong></p>
+                            <p>Latitude: ${lat.toFixed(6)}</p>
+                            <p>Longitude: ${lng.toFixed(6)}</p>
+                        `;
+                    },
+                    function(error) {
+                        showPopup('Location Error', 'Unable to retrieve your location. Please enter your address manually.', 'error');
+                    }
+                );
+            } else {
+                showPopup('Location Not Supported', 'Geolocation is not supported by this browser. Please enter your address manually.', 'error');
+            }
+        });
+
+        // Business Form Submission
+        document.getElementById('businessForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const businessData = {
+                id: Date.now(),
+                name: document.getElementById('businessName').value,
+                category: document.getElementById('businessCategory').value,
+                description: document.getElementById('businessDescription').value,
+                logo: document.getElementById('logoPreview').querySelector('img') ? 
+                      document.getElementById('logoPreview').querySelector('img').src : null,
+                latitude: document.getElementById('businessLatitude').value,
+                longitude: document.getElementById('businessLongitude').value,
+                address: document.getElementById('businessAddress').value,
+                phone: document.getElementById('businessPhone').value,
+                email: document.getElementById('businessEmail').value,
+                status: 'pending', // Admin review required
+                submittedAt: new Date().toISOString()
+            };
+            
+            businessListings.push(businessData);
+            localStorage.setItem('ntintan_business_listings', JSON.stringify(businessListings));
+            
+            showPopup('Business Submitted', 'Thank you for submitting your business! Our admin team will review your listing and contact you soon.', 'success');
+            
+            document.getElementById('businessModal').style.display = 'none';
+            this.reset();
+            document.getElementById('logoPreview').innerHTML = '<span>Logo Preview</span>';
+            document.getElementById('locationInfo').innerHTML = '<p>Click the button below to get your current location</p><button type="button" class="btn" id="getLocationBtn" style="margin-top: 10px;">Get My Location</button>';
+        });
+
+        // Custom Popup Functionality
+        function showPopup(title, message, type) {
+            const popup = document.getElementById('customPopup');
+            const popupIcon = document.getElementById('popupIcon');
+            const popupTitle = document.getElementById('popupTitle');
+            const popupMessage = document.getElementById('popupMessage');
+            
+            // Set icon based on type
+            let iconClass = 'fas fa-info-circle';
+            if (type === 'success') iconClass = 'fas fa-check-circle';
+            if (type === 'error') iconClass = 'fas fa-exclamation-circle';
+            if (type === 'warning') iconClass = 'fas fa-exclamation-triangle';
+            
+            popupIcon.className = 'popup-icon';
+            popupIcon.innerHTML = `<i class="${iconClass}"></i>`;
+            
+            // Set title and message
+            popupTitle.textContent = title;
+            popupMessage.textContent = message;
+            
+            // Show popup
+            popup.style.display = 'block';
+            
+            // Close popup when OK button is clicked
+            document.getElementById('popupOkBtn').onclick = function() {
+                popup.style.display = 'none';
+            };
+        }
+
+        // Loading States
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+
+        // User Profile Navigation
+        document.querySelectorAll('.profile-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Update active nav item
+                document.querySelectorAll('.profile-nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding section
+                const sectionId = this.getAttribute('data-section') + 'Section';
+                document.querySelectorAll('.profile-section').forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // Edit Profile
+        document.getElementById('editProfileBtn').addEventListener('click', function() {
+            // Enable editing
+            document.getElementById('profileFirstName').readOnly = false;
+            document.getElementById('profileLastName').readOnly = false;
+            document.getElementById('profilePhone').readOnly = false;
+            document.getElementById('profileDob').readOnly = false;
+            
+            // Show save/cancel buttons
+            document.getElementById('profileActions').style.display = 'block';
+        });
+
+        // Cancel Profile Edit
+        document.getElementById('cancelProfileBtn').addEventListener('click', function() {
+            // Reset to original values
+            document.getElementById('profileFirstName').value = currentUser.firstName;
+            document.getElementById('profileLastName').value = currentUser.lastName;
+            document.getElementById('profilePhone').value = currentUser.phone || '';
+            document.getElementById('profileDob').value = currentUser.dob || '';
+            
+            // Disable editing
+            document.getElementById('profileFirstName').readOnly = true;
+            document.getElementById('profileLastName').readOnly = true;
+            document.getElementById('profilePhone').readOnly = true;
+            document.getElementById('profileDob').readOnly = true;
+            
+            // Hide save/cancel buttons
+            document.getElementById('profileActions').style.display = 'none';
+        });
+
+        // Save Profile
+        document.getElementById('saveProfileBtn').addEventListener('click', function() {
+            // Update user data
+            currentUser.firstName = document.getElementById('profileFirstName').value;
+            currentUser.lastName = document.getElementById('profileLastName').value;
+            currentUser.phone = document.getElementById('profilePhone').value;
+            currentUser.dob = document.getElementById('profileDob').value;
+            
+            // Update in localStorage
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                users[userIndex] = currentUser;
+                localStorage.setItem('ntintan_users', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
+            
+            // Disable editing
+            document.getElementById('profileFirstName').readOnly = true;
+            document.getElementById('profileLastName').readOnly = true;
+            document.getElementById('profilePhone').readOnly = true;
+            document.getElementById('profileDob').readOnly = true;
+            
+            // Hide save/cancel buttons
+            document.getElementById('profileActions').style.display = 'none';
+            
+            showPopup('Profile Updated', 'Your profile has been updated successfully!', 'success');
+        });
+
+        // Load User Orders
+        function loadUserOrders() {
+            const ordersList = document.getElementById('ordersList');
+            ordersList.innerHTML = '';
+            
+            if (!currentUser.orders || currentUser.orders.length === 0) {
+                ordersList.innerHTML = '<p>You have no orders yet.</p>';
+                return;
+            }
+            
+            currentUser.orders.forEach(order => {
+                const orderItem = document.createElement('div');
+                orderItem.classList.add('order-item');
+                
+                let statusClass = 'status-pending';
+                if (order.status === 'completed') statusClass = 'status-completed';
+                if (order.status === 'cancelled') statusClass = 'status-cancelled';
+                
+                orderItem.innerHTML = `
+                    <div class="order-info">
+                        <div><strong>Order #${order.id}</strong></div>
+                        <div>Date: ${new Date(order.orderDate).toLocaleDateString()}</div>
+                        <div>Total: $${order.total.toLocaleString()}</div>
+                    </div>
+                    <div>
+                        <span class="order-status ${statusClass}">${order.status}</span>
+                    </div>
+                `;
+                
+                ordersList.appendChild(orderItem);
+            });
+        }
+
+        // Load User Wishlist
+        function loadUserWishlist() {
+            const wishlistItems = document.getElementById('wishlistItems');
+            wishlistItems.innerHTML = '';
+            
+            if (!currentUser.wishlist || currentUser.wishlist.length === 0) {
+                wishlistItems.innerHTML = '<p>Your wishlist is empty.</p>';
+                return;
+            }
+            
+            currentUser.wishlist.forEach(item => {
+                const wishlistItem = document.createElement('div');
+                wishlistItem.classList.add('wishlist-item');
+                
+                wishlistItem.innerHTML = `
+                    <div class="wishlist-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="wishlist-details">
+                        <h4>${item.name}</h4>
+                        <p>${item.category}</p>
+                        <p><strong>$${item.price}</strong></p>
+                        <button class="btn" style="margin-top: 10px;">Add to Cart</button>
+                        <button class="remove-wishlist" data-id="${item.name}" style="background: none; border: none; color: var(--danger); margin-left: 10px; cursor: pointer;">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                `;
+                
+                wishlistItems.appendChild(wishlistItem);
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-wishlist').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemName = this.getAttribute('data-id');
+                    removeFromWishlist(itemName);
+                    loadUserWishlist();
+                });
+            });
+        }
+
+        // Add to Wishlist
+        function addToWishlist(item) {
+            if (!currentUser.wishlist) {
+                currentUser.wishlist = [];
+            }
+            
+            // Check if item already in wishlist
+            if (!currentUser.wishlist.find(w => w.name === item.name)) {
+                currentUser.wishlist.push(item);
+                
+                // Update user in localStorage
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex] = currentUser;
+                    localStorage.setItem('ntintan_users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+                
+                showPopup('Wishlist Updated', `${item.name} has been added to your wishlist!`, 'success');
+            }
+        }
+
+        // Remove from Wishlist
+        function removeFromWishlist(itemName) {
+            if (currentUser.wishlist) {
+                currentUser.wishlist = currentUser.wishlist.filter(item => item.name !== itemName);
+                
+                // Update user in localStorage
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex] = currentUser;
+                    localStorage.setItem('ntintan_users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+                
+                showPopup('Wishlist Updated', `Item has been removed from your wishlist.`, 'success');
+            }
+        }
+
+        // Load User Services
+        function loadUserServices() {
+            const servicesList = document.getElementById('servicesList');
+            servicesList.innerHTML = '';
+            
+            if (!currentUser.services || currentUser.services.length === 0) {
+                servicesList.innerHTML = '<p>You have no booked services.</p>';
+                return;
+            }
+            
+            currentUser.services.forEach(service => {
+                const serviceItem = document.createElement('div');
+                serviceItem.classList.add('order-item');
+                
+                let statusClass = 'status-pending';
+                if (service.status === 'completed') statusClass = 'status-completed';
+                if (service.status === 'cancelled') statusClass = 'status-cancelled';
+                
+                serviceItem.innerHTML = `
+                    <div class="order-info">
+                        <div><strong>${service.name}</strong></div>
+                        <div>Booked: ${new Date(service.bookingDate).toLocaleDateString()}</div>
+                        <div>Price: ${service.price}</div>
+                    </div>
+                    <div>
+                        <span class="order-status ${statusClass}">${service.status}</span>
+                    </div>
+                `;
+                
+                servicesList.appendChild(serviceItem);
+            });
+        }
+
+        // Load User Addresses
+        function loadUserAddresses() {
+            const addressesList = document.getElementById('addressesList');
+            addressesList.innerHTML = '';
+            
+            if (!currentUser.addresses || currentUser.addresses.length === 0) {
+                addressesList.innerHTML = '<p>You have no saved addresses.</p>';
+                return;
+            }
+            
+            currentUser.addresses.forEach(address => {
+                const addressCard = document.createElement('div');
+                addressCard.classList.add('address-card');
+                if (address.isDefault) addressCard.classList.add('address-default');
+                
+                addressCard.innerHTML = `
+                    <div>
+                        <h4>${address.name}</h4>
+                        <p>${address.street}</p>
+                        <p>${address.city}, ${address.state} ${address.zipCode}</p>
+                        <p>${address.country}</p>
+                        <p>Phone: ${address.phone}</p>
+                    </div>
+                    <div class="address-actions">
+                        ${address.isDefault ? '<span style="color: var(--highlight);">Default</span>' : '<button class="set-default-address" data-id="${address.id}" style="background: none; border: none; color: var(--highlight); cursor: pointer;">Set as Default</button>'}
+                        <button class="edit-address" data-id="${address.id}" style="background: none; border: none; color: var(--text-light); cursor: pointer;">Edit</button>
+                        <button class="delete-address" data-id="${address.id}" style="background: none; border: none; color: var(--danger); cursor: pointer;">Delete</button>
+                    </div>
+                `;
+                
+                addressesList.appendChild(addressCard);
+            });
+            
+            // Add sample address if none exists
+            if (currentUser.addresses.length === 0) {
+                const sampleAddress = {
+                    id: Date.now(),
+                    name: 'Home',
+                    street: '123 Main Street',
+                    city: 'New York',
+                    state: 'NY',
+                    zipCode: '10001',
+                    country: 'United States',
+                    phone: currentUser.phone || '',
+                    isDefault: true
+                };
+                
+                currentUser.addresses.push(sampleAddress);
+                loadUserAddresses();
+                
+                // Update user in localStorage
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex] = currentUser;
+                    localStorage.setItem('ntintan_users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            }
+        }
+
+        // Load User Payment Methods
+        function loadUserPaymentMethods() {
+            const paymentsList = document.getElementById('paymentsList');
+            paymentsList.innerHTML = '';
+            
+            if (!currentUser.paymentMethods || currentUser.paymentMethods.length === 0) {
+                paymentsList.innerHTML = '<p>You have no saved payment methods.</p>';
+                return;
+            }
+            
+            currentUser.paymentMethods.forEach(payment => {
+                const paymentCard = document.createElement('div');
+                paymentCard.classList.add('payment-card');
+                if (payment.isDefault) paymentCard.classList.add('payment-default');
+                
+                let paymentIcon = 'fa-credit-card';
+                if (payment.type === 'paypal') paymentIcon = 'fa-paypal';
+                if (payment.type === 'mobile') paymentIcon = 'fa-mobile-alt';
+                if (payment.type === 'crypto') paymentIcon = 'fa-bitcoin';
+                
+                paymentCard.innerHTML = `
+                    <div>
+                        <h4><i class="fab ${paymentIcon}"></i> ${payment.name}</h4>
+                        <p>${payment.details}</p>
+                        <p>Expires: ${payment.expiry}</p>
+                    </div>
+                    <div class="address-actions">
+                        ${payment.isDefault ? '<span style="color: var(--highlight);">Default</span>' : '<button class="set-default-payment" data-id="${payment.id}" style="background: none; border: none; color: var(--highlight); cursor: pointer;">Set as Default</button>'}
+                        <button class="delete-payment" data-id="${payment.id}" style="background: none; border: none; color: var(--danger); cursor: pointer;">Delete</button>
+                    </div>
+                `;
+                
+                paymentsList.appendChild(paymentCard);
+            });
+            
+            // Add sample payment method if none exists
+            if (currentUser.paymentMethods.length === 0) {
+                const samplePayment = {
+                    id: Date.now(),
+                    type: 'card',
+                    name: 'Visa ending in 1234',
+                    details: 'Visa •••• 1234',
+                    expiry: '12/25',
+                    isDefault: true
+                };
+                
+                currentUser.paymentMethods.push(samplePayment);
+                loadUserPaymentMethods();
+                
+                // Update user in localStorage
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex] = currentUser;
+                    localStorage.setItem('ntintan_users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            }
+        }
+
+        // Add New Address
+        document.getElementById('addAddressBtn').addEventListener('click', function() {
+            showPopup('Add Address', 'This feature will allow you to add a new address. Implementation details would go here.', 'info');
+        });
+
+        // Add New Payment Method
+        document.getElementById('addPaymentBtn').addEventListener('click', function() {
+            showPopup('Add Payment Method', 'This feature will allow you to add a new payment method. Implementation details would go here.', 'info');
+        });
+    </script>
+</body>
+</html>
