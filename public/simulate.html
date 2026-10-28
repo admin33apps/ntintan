@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Test payment | Ntintan</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <script type="module" src="/js/simulate.js"></script>
+</head>
+<body class="admin">
+  <main class="admin-login sim-wrap">
+    <div class="panel">
+      <h1 class="modal-title">Test payment</h1>
+      <p class="info-box">Development simulator — no real money moves. In production this page is replaced by Paystack's secure checkout.</p>
+      <div class="detail-list" id="simDetails"><p class="muted">Loading…</p></div>
+      <div class="sim-actions">
+        <button class="btn btn-block" type="button" data-outcome="success">Approve payment</button>
+        <button class="btn btn-outline btn-block" type="button" data-outcome="failed">Decline payment</button>
+      </div>
+    </div>
+  </main>
+  <div class="toast-stack" id="toasts"></div>
+</body>
+</html>

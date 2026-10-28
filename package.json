@@ -1,0 +1,21 @@
+{
+  "name": "ntintan",
+  "version": "1.0.0",
+  "description": "Ntintan Groceries — Ghana's farm-to-table marketplace (zero-dependency Node.js app)",
+  "private": true,
+  "type": "commonjs",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server.js",
+    "seed": "node --disable-warning=ExperimentalWarning scripts/seed.js",
+    "create-admin": "node --disable-warning=ExperimentalWarning scripts/create-admin.js",
+    "check:prod": "node --disable-warning=ExperimentalWarning scripts/check-config.js",
+    "backup":"node --disable-warning=ExperimentalWarning scripts/backup.js",
+    "test": "node --disable-warning=ExperimentalWarning --test --test-concurrency=1 test/*.test.js"
+  },
+  "license": "UNLICENSED"
+}

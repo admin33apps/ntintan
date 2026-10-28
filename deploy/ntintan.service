@@ -1,0 +1,26 @@
+# systemd unit for running without Docker. Copy to /etc/systemd/system/ntintan.service
+[Unit]
+Description=Ntintan Groceries
+After=network.target
+
+[Service]
+Type=simple
+User=ntintan
+Group=ntintan
+WorkingDirectory=/opt/ntintan
+EnvironmentFile=/opt/ntintan/.env
+ExecStart=/usr/bin/node --disable-warning=ExperimentalWarning server.js
+Restart=on-failure
+RestartSec=5
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/ntintan/data
+CapabilityBoundingSet=
+LockPersonality=true
+RestrictSUIDSGID=true
+
+[Install]
+WantedBy=multi-user.target

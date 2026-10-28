@@ -1,0 +1,2 @@
+# Nightly database backup at 02:15 (keeps the latest 30). Install with: crontab -u ntintan deploy/backup.cron
+15 2 * * * cd /opt/ntintan && /usr/bin/node --disable-warning=ExperimentalWarning scripts/backup.js >> data/backup.log 2>&1

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ntintan Groceries | Farm to Table, Across Ghana</title>
+  <meta name="description" content="Ghana's farm-to-table marketplace. Fresh produce, proteins and staples sold in local measures, direct from Ghanaian farmers, with live market prices, food coupons and Ogya Coin.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Ntintan Groceries — Farm to Table, Across Ghana">
+  <meta property="og:description" content="Fresh produce direct from Ghanaian farmers, sold in Olonka, buckets, bunches and heaps.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="module" src="/js/app.js"></script>
+</head>
+<body>
+  <a href="#products" class="skip-link">Skip to products</a>
+  <div class="announce" id="announce">Farm-to-door delivery across all 16 regions · Free delivery over GH₵300</div>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-top">
+        <a href="/" class="logo" id="logo">NTINTAN<span class="logo-rest"> GROCERIES</span></a>
+
+        <form class="search" id="searchForm" role="search">
+          <svg class="i" aria-hidden="true"><use href="/img/icons.svg#search"/></svg>
+          <label for="searchInput" class="sr-only">Search products</label>
+          <input type="search" id="searchInput" placeholder="Search yam, gari, kontomire, Olonka…" autocomplete="off" maxlength="60">
+        </form>
+
+        <div class="header-actions">
+          <div class="header-action notif-wrap" id="alertsWrap">
+            <label class="notification-container" title="Market price alerts">
+              <input type="checkbox" id="bellToggle" aria-label="Market price alerts" aria-controls="notifPanel">
+              <svg class="bell-regular" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" aria-hidden="true"><path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/></svg>
+              <svg class="bell-solid" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" aria-hidden="true"><path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/></svg>
+              <span class="badge dot" id="notifDot" hidden></span>
+            </label>
+            <div class="notif-panel" id="notifPanel" role="region" aria-label="Market price alerts">
+              <h4>Market price alerts</h4>
+              <div id="notifList"></div>
+              <a href="#market" class="notif-more">See all market prices</a>
+            </div>
+          </div>
+
+          <button class="header-action" id="accountBtn" type="button"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#user"/></svg><span class="lbl" id="accountLbl">Account</span></button>
+
+          <button class="ogya-wallet" id="walletBtn" type="button" aria-label="Ogya wallet">
+            <svg class="i ogya-icon" aria-hidden="true"><use href="/img/icons.svg#coins"/></svg>
+            <span class="ogya-balance" id="walletBal">OGY</span>
+          </button>
+
+          <button class="header-action" id="bagBtn" type="button" aria-label="Shopping bag">
+            <svg class="i" aria-hidden="true"><use href="/img/icons.svg#bag"/></svg><span class="lbl">Bag</span>
+            <span class="badge" id="bagCount" hidden></span>
+          </button>
+
+          <div class="currency-toggle" role="group" aria-label="Show prices in">
+            <button type="button" data-currency="GHS" class="active" aria-pressed="true">GH₵</button>
+            <button type="button" data-currency="OGY" aria-pressed="false">OGY</button>
+          </div>
+
+          <button class="mobile-menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainNav"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#menu"/></svg></button>
+        </div>
+      </div>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main">
+        <div class="nav-item has-dropdown">
+          <button class="nav-link" type="button" aria-expanded="false">Shop <svg class="i chev" aria-hidden="true"><use href="/img/icons.svg#chev-down"/></svg></button>
+          <div class="dropdown" id="navCategories"></div>
+        </div>
+        <div class="nav-item"><a class="nav-link" href="#products" data-filter="buy">Buy Now</a></div>
+        <div class="nav-item has-dropdown">
+          <button class="nav-link" type="button" aria-expanded="false">Drinks <svg class="i chev" aria-hidden="true"><use href="/img/icons.svg#chev-down"/></svg></button>
+          <div class="dropdown">
+            <a href="#drinks" class="dropdown-item" data-drinks="wine">Wine</a>
+            <a href="#drinks" class="dropdown-item" data-drinks="alcoholic">African Beers &amp; Spirits</a>
+            <a href="#drinks" class="dropdown-item" data-drinks="non_alcoholic">Local Soft Drinks</a>
+            <a href="#drinks" class="dropdown-item" data-drinks="water">Premium Glass-Bottled Water</a>
+            <a href="#makers" class="dropdown-item">African Drinks Makers</a>
+          </div>
+        </div>
+        <div class="nav-item"><a class="nav-link" href="#halal">Halal</a></div>
+        <div class="nav-item"><a class="nav-link" href="#market">Market Prices</a></div>
+        <div class="nav-item"><a class="nav-link" href="#farmers">Farmers</a></div>
+        <div class="nav-item has-dropdown">
+          <button class="nav-link" type="button" aria-expanded="false">Business <svg class="i chev" aria-hidden="true"><use href="/img/icons.svg#chev-down"/></svg></button>
+          <div class="dropdown">
+            <a href="#partners" class="dropdown-item" data-partner="business">Restaurants & Hotels</a>
+            <a href="#partners" class="dropdown-item" data-partner="school">School Feeding</a>
+            <a href="#partners" class="dropdown-item" data-partner="farmer">Sell on Ntintan</a>
+            <a href="#measures" class="dropdown-item">Local Measures Guide</a>
+          </div>
+        </div>
+        <div class="nav-item"><a class="nav-link" href="#coupons">Food Coupons</a></div>
+        <div class="nav-item"><button class="nav-link" type="button" data-open="track">Track Order</button></div>
+        <div class="nav-item mobile-only"><div class="nav-link">Show prices in<div class="currency-toggle" role="group" aria-label="Show prices in"><button type="button" data-currency="GHS" class="active" aria-pressed="true">GH₵</button><button type="button" data-currency="OGY" aria-pressed="false">OGY</button></div></div></div>
+        <div class="nav-item"><button class="nav-link ogya-link" type="button" data-open="wallet"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#coins"/></svg> Ogya Coin</button></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-roledescription="carousel" aria-label="Highlights">
+      <div class="hero-slide slide-1 active" aria-roledescription="slide" aria-label="1 of 3">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Ghana's farm-to-table marketplace</span>
+          <h1>From Ghana's farms to every table</h1>
+          <p>Fresh produce, proteins and staples sold in the measures you know — Olonka, buckets, bunches and heaps — direct from Ghanaian farmers.</p>
+          <div class="hero-buttons">
+            <a href="#products" class="btn-animated" data-filter="buy"><span>Shop Fresh</span></a>
+            <a href="#market" class="hero-text-link">Today's market prices</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slide slide-2" aria-roledescription="slide" aria-label="2 of 3">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Ntintan for business</span>
+          <h1>Supply for kitchens & schools</h1>
+          <p>Bulk sacks, crates and tonnes at wholesale prices for restaurants, hotels, caterers and school feeding programmes.</p>
+          <div class="hero-buttons">
+            <a href="#partners" class="btn-animated" data-partner="business"><span>Get a Quote</span></a>
+            <a href="#partners" class="hero-text-link" data-partner="school">School feeding</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slide slide-3" aria-roledescription="slide" aria-label="3 of 3">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Food coupons & Ogya Coin</span>
+          <h1>Send food, not just money</h1>
+          <p>Gift a food coupon to family anywhere in Ghana, or pay with Ogya Coin (100 OGY = GH₵1) and save on every order.</p>
+          <div class="hero-buttons">
+            <a href="#coupons" class="btn-animated"><span>Gift a Coupon</span></a>
+            <button type="button" class="hero-text-link" data-open="wallet">Ogya wallet</button>
+          </div>
+        </div>
+      </div>
+      <button class="hero-arrow prev" type="button" aria-label="Previous slide"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#chev-left"/></svg></button>
+      <button class="hero-arrow next" type="button" aria-label="Next slide"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#chev-right"/></svg></button>
+      <div class="hero-controls">
+        <button class="hero-control active" type="button" aria-label="Show slide 1"></button>
+        <button class="hero-control" type="button" aria-label="Show slide 2"></button>
+        <button class="hero-control" type="button" aria-label="Show slide 3"></button>
+      </div>
+    </section>
+
+    <div class="trust">
+      <div class="container trust-grid">
+        <div class="trust-item"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#sprout"/></svg><div><b>Direct from farms</b><span>Verified Ghanaian growers</span></div></div>
+        <div class="trust-item"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#scale"/></svg><div><b>Local measures</b><span>Olonka, ololo, suro, heaps</span></div></div>
+        <div class="trust-item"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#truck"/></svg><div><b>All 16 regions</b><span>Free delivery over GH₵300</span></div></div>
+        <div class="trust-item"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#lock"/></svg><div><b>Secure payments</b><span>MoMo, card, Ogya, coupon, cash</span></div></div>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <section class="block" id="categories" aria-labelledby="catTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="catTitle">Shop by Category</h2><span class="line"></span></div>
+        <div class="categories-grid" id="categoryGrid"><div class="skeleton-row"></div></div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="block products" id="products" aria-labelledby="prodTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="prodTitle">The Market</h2><p>Items with a price can be bought now. Everything else is sourced on request — ask for a quote and we'll reply within 24 hours.</p></div>
+        <div class="product-toolbar">
+          <div class="filter-tabs" id="filterTabs" role="tablist" aria-label="Filter by category"></div>
+          <label class="sr-only" for="sortSelect">Sort products</label>
+          <select class="sort-select" id="sortSelect">
+            <option value="featured">Sort: Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="az">Name: A–Z</option>
+          </select>
+        </div>
+        <div class="results-note" id="resultsNote" aria-live="polite"></div>
+        <div class="products-grid" id="productGrid" aria-busy="true"></div>
+        <div class="load-more-wrap"><button class="btn btn-outline" id="loadMore" type="button" hidden>Show more</button></div>
+      </div>
+    </section>
+
+    <!-- Halal -->
+    <section class="block alt halal" id="halal" aria-labelledby="halalTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="halalTitle">Halal Foods</h2><p>Halal beef, goat, mutton and poultry from certified abattoirs and butchers, plus live rams for Eid and naming ceremonies. Nothing in this section contains pork or alcohol.</p><span class="line"></span></div>
+        <div class="delivery-grid halal-promise">
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#shield"/></svg></div><h3>Certified Suppliers</h3><p>We buy halal meat only from certified abattoirs and butchers. Ask for the certificate with your order.</p></div>
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#box"/></svg></div><h3>Packed Separately</h3><p>Halal orders are packed and delivered apart from pork and alcohol.</p></div>
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#calendar"/></svg></div><h3>Eid &amp; Celebrations</h3><p>Order rams, goats and bulk meat for Eid, weddings and naming ceremonies.</p><button class="text-link" type="button" data-partner="business">Get a bulk quote</button></div>
+        </div>
+        <div class="products-grid" id="halalGrid"></div>
+        <div class="load-more-wrap"><button class="btn btn-outline" id="halalMore" type="button" hidden>Show more halal foods</button></div>
+        <p class="drinks-note" id="halalNote"></p>
+      </div>
+    </section>
+
+    <!-- Drinks -->
+    <section class="block drinks" id="drinks" aria-labelledby="drinksTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="drinksTitle">Wine &amp; African Drinks</h2><p>Locally acclaimed beverages from 30 African makers in 15 countries: wines, beers, ciders and spirits, traditional and modern soft drinks, and premium glass-bottled water.</p><span class="line"></span></div>
+        <div class="drink-tabs" id="drinkTabs" role="tablist" aria-label="Drinks">
+          <button type="button" role="tab" data-sub="wine"><span>Wine</span><small>African wines &amp; palm wine</small></button>
+          <button type="button" role="tab" data-sub="alcoholic"><span>Beers &amp; Spirits</span><small>Beers, ciders, gins, bitters &amp; more</small></button>
+          <button type="button" role="tab" data-sub="non_alcoholic"><span>Soft Drinks</span><small>Malts, sodas, juices &amp; sobolo</small></button>
+          <button type="button" role="tab" data-sub="water"><span>Premium Water</span><small>Still &amp; sparkling, in glass</small></button>
+        </div>
+        <div class="age-gate" id="ageGate" hidden>
+          <div class="age-mark" aria-hidden="true">18+</div>
+          <h3>This section contains alcoholic drinks</h3>
+          <p>Alcohol is not sold to persons under 18. Please confirm your age to continue. The receiver of any order containing alcohol must be 18 or older and show ID on delivery.</p>
+          <div class="age-actions"><button class="btn" type="button" id="ageYes">I am 18 or older</button><button class="btn btn-outline" type="button" id="ageNo">I am under 18</button></div>
+        </div>
+        <div class="drink-filters" id="drinkFilters">
+          <div class="country-chips" id="countryChips" role="group" aria-label="Filter by country"></div>
+          <div class="drink-filter-row">
+            <label class="sr-only" for="makerSelect">Filter by maker</label>
+            <select id="makerSelect" class="sort-select"><option value="">All makers</option></select>
+            <span class="muted small" id="drinkCount" aria-live="polite"></span>
+            <button type="button" class="text-link inline" id="drinkReset" hidden>Clear filters</button>
+          </div>
+        </div>
+        <div class="products-grid" id="drinkGrid"></div>
+        <div class="load-more-wrap"><button class="btn btn-outline" id="drinkMore" type="button" hidden>Show more drinks</button></div>
+        <p class="alcohol-warning" id="alcoholWarning" hidden>Drink responsibly · Not for sale to persons under 18 · Not recommended for pregnant or breastfeeding women · Don't drink and drive</p>
+        <p class="drinks-note" id="drinksNote"></p>
+      </div>
+    </section>
+
+    <!-- Drinks makers -->
+    <section class="block alt" id="makers" aria-labelledby="makersTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="makersTitle">Meet the Makers</h2><p>The African breweries, distilleries, wineries and bottlers behind our drinks.</p><span class="line"></span></div>
+        <div class="maker-filter"><label class="sr-only" for="makerCountry">Country</label><select id="makerCountry" class="sort-select"><option value="">All countries</option></select></div>
+        <div class="maker-grid" id="makerGrid"></div>
+      </div>
+    </section>
+
+    <!-- Market watch -->
+    <section class="block" id="market" aria-labelledby="marketTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="marketTitle">Market Watch</h2><p>Wholesale and retail prices from Ghana's markets, shown in GH₵ and OGY (100 OGY = GH₵1).</p><span class="line"></span></div>
+        <div class="trend-grid" id="trendGrid"></div>
+        <div class="table-wrap">
+          <table class="data-table" id="marketTable">
+            <caption class="sr-only">Current market prices</caption>
+            <thead><tr><th scope="col">Product</th><th scope="col">Type</th><th scope="col">Unit</th><th scope="col" class="num">Price (GH₵)</th><th scope="col" class="num">Price (OGY)</th><th scope="col">Market</th><th scope="col">Notes</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Farmers -->
+    <section class="block alt" id="farmers" aria-labelledby="farmTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="farmTitle">Our Farms</h2><p>The farms and enterprises behind your food.</p><span class="line"></span></div>
+        <div class="farmer-grid" id="farmerGrid"></div>
+        <div class="center-cta"><button class="btn" type="button" data-partner="farmer">Sell on Ntintan</button></div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="block" id="services" aria-labelledby="servTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="servTitle">One Platform for Everyone Who Eats</h2><span class="line"></span></div>
+        <div class="delivery-grid">
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#carrot"/></svg></div><h3>Farm to Table</h3><p>Tomatoes, onions, plantain and cassava straight from the growing belts.</p><a class="text-link" href="#products" data-filter="buy">Shop now</a></div>
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#fish"/></svg></div><h3>Protein Goods</h3><p>Smoked fish, koobi, eggs, meats and farmed tilapia from vetted producers.</p><a class="text-link" href="#products" data-filter="cat-4">See proteins</a> <a class="text-link" href="#halal">Halal meat</a></div>
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#utensils"/></svg></div><h3>Restaurants & Hotels</h3><p>Standing orders, wholesale pricing and invoicing for kitchens of every size.</p><button class="text-link" type="button" data-partner="business">Get a supply quote</button></div>
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#school"/></svg></div><h3>School Feeding</h3><p>Order by menu and pupil count. Traceable ingredients delivered weekly.</p><button class="text-link" type="button" data-partner="school">Partner with us</button></div>
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#ticket"/></svg></div><h3>Food Coupons</h3><p>Send groceries to family, reward staff or run relief programmes.</p><a class="text-link" href="#coupons">Buy a coupon</a></div>
+          <div class="delivery-card"><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#wheat"/></svg></div><h3>Cash Crops & Bulk</h3><p>Cocoa, sesame, soya and grain by the tonne for processors and exporters.</p><a class="text-link" href="#products" data-filter="cat-6">Browse bulk</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coupons -->
+    <section class="block coupons" id="coupons" aria-labelledby="coupTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="coupTitle">Food Coupons</h2><p>Choose an amount and who it's for. They receive a code by SMS to redeem for groceries delivered to their door.</p><span class="line"></span></div>
+        <div class="voucher-grid" id="voucherGrid" role="radiogroup" aria-label="Coupon value"></div>
+        <div class="coupon-forms">
+          <div class="panel">
+            <h3>Gift a coupon</h3>
+            <p id="couponSignInNote">You'll need to sign in so you can see the code and track it.</p>
+            <form class="stack" id="couponForm" novalidate>
+              <div class="form-row">
+                <div class="form-group"><label for="cName">Receiver's name</label><input id="cName" name="recipientName" required maxlength="80" autocomplete="off" placeholder="e.g. Maame Akosua"></div>
+                <div class="form-group"><label for="cPhone">Receiver's phone</label><input id="cPhone" name="recipientPhone" type="tel" required inputmode="tel" maxlength="16" placeholder="024 000 0000"></div>
+              </div>
+              <div class="form-group"><label for="cMsg">Message <span class="opt">(optional)</span></label><input id="cMsg" name="message" maxlength="140" placeholder="Enjoy your groceries, Mum!"></div>
+              <div class="form-group"><label for="cMethod">Pay with</label><select id="cMethod" name="method"></select></div>
+              <p class="fine-print">You confirm the receiver is happy for us to text them the code. Coupons are prepaid store credit — <a class="text-link inline" href="/terms#coupons" target="_blank" rel="noopener">coupon terms</a>.</p>
+              <button class="btn btn-block" type="submit"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#gift"/></svg> <span id="cBtnLabel">Buy coupon</span></button>
+            </form>
+            <div class="result-box" id="couponCreated" aria-live="polite"></div>
+          </div>
+          <div class="panel">
+            <h3>Have a coupon?</h3>
+            <p>Check the balance, then apply it at checkout.</p>
+            <form class="stack" id="checkForm" novalidate>
+              <div class="form-group"><label for="checkCode">Coupon code</label><input id="checkCode" name="code" class="upper" required maxlength="14" autocomplete="off" placeholder="NTN-XXXX-XXXX"></div>
+              <button class="btn btn-outline btn-block" type="submit">Check balance</button>
+            </form>
+            <div class="result-box" id="couponResult" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="block" id="partners" aria-labelledby="partTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="partTitle">Partner with Ntintan</h2><p>Choose what describes you. We'll call you within 24 hours.</p><span class="line"></span></div>
+        <div class="partner-wrap">
+          <div class="partner-info" id="partnerInfo"></div>
+          <div class="panel">
+            <div class="tabs" role="tablist" id="partnerTabs">
+              <button class="tab-btn active" type="button" role="tab" data-ptab="business" aria-selected="true">Restaurants</button>
+              <button class="tab-btn" type="button" role="tab" data-ptab="school" aria-selected="false">Schools</button>
+              <button class="tab-btn" type="button" role="tab" data-ptab="farmer" aria-selected="false">Farmers</button>
+            </div>
+            <form class="stack lead-form tab-content active" data-lead="business" id="ptab-business" novalidate data-msg="Thanks! Our business team will call you within 24 hours.">
+              <div class="form-row">
+                <div class="form-group"><label for="bName">Business name</label><input id="bName" name="name" required maxlength="120"></div>
+                <div class="form-group"><label for="bType">Business type</label><select id="bType" name="businessType" required><option value="">Select</option><option>Restaurant / Chop bar</option><option>Hotel</option><option>Caterer</option><option>Supermarket / Retailer</option><option>Office canteen</option></select></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="bPhone">Phone</label><input id="bPhone" name="phone" type="tel" inputmode="tel" required maxlength="16" placeholder="024 000 0000"></div>
+                <div class="form-group"><label for="bRegion">Region</label><select id="bRegion" name="region" class="region-select" required></select></div>
+              </div>
+              <div class="form-group"><label for="bNeeds">What do you need weekly? <span class="opt">(optional)</span></label><textarea id="bNeeds" name="needs" rows="3" maxlength="1000" placeholder="e.g. 3 crates tomatoes, 2 bags rice, 10 Olonka gari"></textarea></div>
+              <button class="btn btn-block" type="submit">Request quote</button>
+            </form>
+            <form class="stack lead-form tab-content" data-lead="school" id="ptab-school" novalidate data-msg="Thank you. Our school feeding team will reach out to plan menus and deliveries.">
+              <div class="form-row">
+                <div class="form-group"><label for="sName">School / organisation</label><input id="sName" name="name" required maxlength="120"></div>
+                <div class="form-group"><label for="sRole">You are a…</label><select id="sRole" name="role" required><option value="">Select</option><option>School caterer</option><option>School administrator</option><option>District assembly</option><option>NGO / Donor</option></select></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="sPupils">Pupils fed per day</label><input id="sPupils" name="pupils" type="number" inputmode="numeric" min="1" max="100000" required data-int></div>
+                <div class="form-group"><label for="sRegion">Region</label><select id="sRegion" name="region" class="region-select" required></select></div>
+              </div>
+              <div class="form-group"><label for="sPhone">Phone</label><input id="sPhone" name="phone" type="tel" inputmode="tel" required maxlength="16"></div>
+              <button class="btn btn-block" type="submit">Start partnership</button>
+            </form>
+            <form class="stack lead-form tab-content" data-lead="farmer" id="ptab-farmer" novalidate data-msg="Akwaaba! A field officer will call to arrange a farm visit.">
+              <div class="form-row">
+                <div class="form-group"><label for="fName">Name / cooperative</label><input id="fName" name="name" required maxlength="120"></div>
+                <div class="form-group"><label for="fPhone">Phone (MoMo)</label><input id="fPhone" name="phone" type="tel" inputmode="tel" required maxlength="16"></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="fRegion">Region</label><select id="fRegion" name="region" class="region-select" required></select></div>
+                <div class="form-group"><label for="fSize">Farm size</label><select id="fSize" name="farmSize" required><option>Under 2 acres</option><option>2–10 acres</option><option>10–50 acres</option><option>50+ acres</option></select></div>
+              </div>
+              <div class="form-group"><label for="fProduce">What do you grow or raise?</label><input id="fProduce" name="produce" required maxlength="300" placeholder="e.g. cassava, maize, poultry"></div>
+              <button class="btn btn-block" type="submit">Register farm</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Measures -->
+    <section class="block alt" id="measures" aria-labelledby="measTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="measTitle">Local Measures Guide</h2><p>We sell the way Ghana's markets do. Here's what each measure means.</p><span class="line"></span></div>
+        <div class="measure-grid" id="measureGrid"></div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="block" id="how" aria-labelledby="howTitle">
+      <div class="container">
+        <div class="section-title"><h2 id="howTitle">How It Works</h2><span class="line"></span></div>
+        <div class="delivery-grid four">
+          <div class="delivery-card"><div class="step-num">01</div><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#sprout"/></svg></div><h3>Farmers list</h3><p>Harvests are listed with farm, region and local measure.</p></div>
+          <div class="delivery-card"><div class="step-num">02</div><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#bag"/></svg></div><h3>You order</h3><p>Buy priced items now or request a quote for anything else.</p></div>
+          <div class="delivery-card"><div class="step-num">03</div><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#warehouse"/></svg></div><h3>We pack</h3><p>Produce is graded and packed at our hubs.</p></div>
+          <div class="delivery-card"><div class="step-num">04</div><div class="delivery-icon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#truck"/></svg></div><h3>Delivered</h3><p>Track your order with its number and your phone.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Ntintan Groceries</h3>
+          <p>Ghana's farm-to-table marketplace, connecting farmers to homes, kitchens and classrooms.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Shop</h3>
+          <ul class="footer-links">
+            <li><a href="#products" data-filter="buy">Buy Now</a></li>
+            <li><a href="#drinks" data-drinks="wine">Wine &amp; Drinks</a></li>
+            <li><a href="#market">Market Prices</a></li>
+            <li><a href="#coupons">Food Coupons</a></li>
+            <li><a href="#measures">Local Measures</a></li>
+            <li><button type="button" class="link-btn" data-open="track">Track an Order</button></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Partners & Help</h3>
+          <ul class="footer-links">
+            <li><a href="#partners" data-partner="business">Restaurants & Hotels</a></li>
+            <li><a href="#partners" data-partner="school">School Feeding</a></li>
+            <li><a href="#partners" data-partner="farmer">Farmers & Co-ops</a></li>
+            <li><a href="#farmers">Farmer Directory</a></li>
+            <li><button type="button" class="link-btn" data-open="chat">Contact Us</button></li>
+            <li><a href="/terms">Terms of Sale</a></li>
+            <li><a href="/privacy">Privacy Notice</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Newsletter</h3>
+          <p>Weekly harvest prices and new farms. Unsubscribe any time — see our <a href="/privacy#marketing">Privacy Notice</a>.</p>
+          <form class="newsletter-form lead-form" data-lead="newsletter" novalidate data-msg="Subscribed! Watch for weekly harvest prices.">
+            <label for="nlEmail" class="sr-only">Email address</label>
+            <input type="email" id="nlEmail" name="email" placeholder="Your email address" required maxlength="254">
+            <button type="submit" aria-label="Subscribe"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#arrow-right"/></svg></button>
+          </form>
+          <div class="pay-badges"><span>MTN MoMo</span><span>Telecel Cash</span><span>AirtelTigo</span><span>Visa / MC</span><span>Ogya</span><span>Cash</span></div>
+          <div class="footer-actions">
+            <p>Dark Mode</p>
+            <div class="toggle-switch">
+              <label class="switch-label">
+                <input type="checkbox" class="checkbox" id="darkToggle" aria-label="Dark mode">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; <span id="year">2026</span> {{COMPANY_NAME}}. All rights reserved. <span class="sep">|</span> <a href="/terms">Terms of Sale</a> <span class="sep">|</span> <a href="/terms#returns">Returns &amp; Refunds</a> <span class="sep">|</span> <a href="/privacy">Privacy Notice</a></p></div>
+    </div>
+  </footer>
+
+  <!-- Bag -->
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="drawer" id="cartDrawer" aria-label="Shopping bag" aria-hidden="true" tabindex="-1">
+    <div class="drawer-head"><h2>Your Bag <span id="drawerCount" class="muted"></span></h2><button class="icon-close" type="button" data-close aria-label="Close bag"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#x"/></svg></button></div>
+    <div class="ship-bar" id="shipBar" hidden><span id="shipText"></span><div class="ship-track"><div class="ship-fill" id="shipFill"></div></div></div>
+    <div class="drawer-body" id="cartItems"></div>
+    <div class="drawer-foot" id="cartFoot"></div>
+  </aside>
+
+  <!-- Checkout -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" hidden>
+    <div class="modal-content wide">
+      <button class="icon-close close-modal" type="button" data-close aria-label="Close"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#x"/></svg></button>
+      <div id="checkoutView">
+        <h2 class="modal-title" id="checkoutTitle">Checkout</h2>
+        <div class="checkout-grid">
+          <form class="stack" id="checkoutForm" novalidate>
+            <div class="checkout-sec">1 · Delivery</div>
+            <div class="form-row">
+              <div class="form-group"><label for="coName">Full name</label><input id="coName" name="name" required maxlength="80" autocomplete="name"></div>
+              <div class="form-group"><label for="coPhone">Phone</label><input id="coPhone" name="phone" type="tel" inputmode="tel" required maxlength="16" autocomplete="tel" placeholder="024 000 0000"></div>
+            </div>
+            <div class="form-group"><label for="coEmail">Email <span class="opt">(optional, for receipts)</span></label><input id="coEmail" name="email" type="email" maxlength="254" autocomplete="email"></div>
+            <div class="form-row">
+              <div class="form-group"><label for="coRegion">Region</label><select id="coRegion" name="region" class="region-select" required autocomplete="address-level1"></select></div>
+              <div class="form-group"><label for="coTown">Town / area</label><input id="coTown" name="town" required maxlength="80" autocomplete="address-level2" placeholder="e.g. Asokwa"></div>
+            </div>
+            <div class="form-group"><label for="coAddress">Address, landmark or GhanaPost GPS</label><input id="coAddress" name="address" required maxlength="200" autocomplete="street-address" placeholder="e.g. AK-039-5028, near the Total station"></div>
+            <div class="form-row">
+              <div class="form-group"><label for="coSlot">Delivery time</label><select id="coSlot" name="deliverySlot" required></select></div>
+              <div class="form-group"><label for="coNotes">Notes <span class="opt">(optional)</span></label><input id="coNotes" name="notes" maxlength="300"></div>
+            </div>
+
+            <div class="checkout-sec">2 · Payment</div>
+            <div class="payment-options" id="payOptions" role="radiogroup" aria-label="Payment method"></div>
+            <div class="info-box" id="payInfo"></div>
+
+            <div class="form-group"><label for="coCoupon">Coupon code <span class="opt">(optional)</span></label>
+              <div class="input-group"><input id="coCoupon" class="upper" maxlength="14" autocomplete="off" placeholder="NTN-XXXX-XXXX"><button type="button" class="btn btn-outline" id="applyCoupon">Apply</button></div>
+            </div>
+            <label class="check age-check" id="ageRow" hidden><input type="checkbox" name="confirmAge" id="coAge" disabled> <span><b>Your bag contains alcohol.</b> I confirm that I am 18 or older and that the person receiving this order is 18 or older and will show valid ID (Ghana Card, passport or driver's licence) to the rider.</span></label>
+            <label class="check"><input type="checkbox" name="acceptTerms" id="coTerms" required> <span>I agree to the <a href="/terms" target="_blank" rel="noopener">Terms of Sale</a> (including <a href="/terms#returns" target="_blank" rel="noopener">returns &amp; refunds</a>) and <a href="/privacy" target="_blank" rel="noopener">Privacy Notice</a>.</span></label>
+            <div class="form-error" id="checkoutError" role="alert" hidden></div>
+            <button class="btn btn-block" id="placeOrder" type="submit">Place order</button>
+            <p class="fine-print"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#lock"/></svg> Prices are confirmed by our server at checkout. Online payments are processed securely by Paystack.</p>
+          </form>
+          <aside class="order-summary" aria-live="polite">
+            <h3>Order summary</h3>
+            <div class="os-items" id="osItems"></div>
+            <div id="osTotals"></div>
+          </aside>
+        </div>
+      </div>
+      <div class="success-view" id="successView" hidden>
+        <div class="tick"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#check"/></svg></div>
+        <h3 id="successTitle">Order placed</h3>
+        <p id="successMsg"></p>
+        <div class="ref" id="orderRef"></div>
+        <div><button class="btn" type="button" data-close>Continue shopping</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick view -->
+  <div class="modal" id="quickViewModal" role="dialog" aria-modal="true" aria-label="Product details" hidden>
+    <div class="modal-content wide">
+      <button class="icon-close close-modal" type="button" data-close aria-label="Close"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#x"/></svg></button>
+      <div class="quick-view-content" id="quickViewContent"></div>
+    </div>
+  </div>
+
+  <!-- Quote request -->
+  <div class="modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quoteTitle" hidden>
+    <div class="modal-content">
+      <button class="icon-close close-modal" type="button" data-close aria-label="Close"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#x"/></svg></button>
+      <h2 class="modal-title" id="quoteTitle">Request a quote</h2>
+      <p class="modal-sub" id="quoteProduct"></p>
+      <form class="stack lead-form" data-lead="quote" id="quoteForm" novalidate data-msg="Quote request sent. We'll call you within 24 hours." data-close-after>
+        <input type="hidden" name="productId" id="quoteProductId" data-int>
+        <div class="form-row">
+          <div class="form-group"><label for="qName">Your name</label><input id="qName" name="name" required maxlength="80" autocomplete="name"></div>
+          <div class="form-group"><label for="qPhone">Phone</label><input id="qPhone" name="phone" type="tel" inputmode="tel" required maxlength="16" autocomplete="tel"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="qRegion">Region</label><select id="qRegion" name="region" class="region-select" required></select></div>
+          <div class="form-group"><label for="qQty">Quantity needed</label><input id="qQty" name="quantity" required maxlength="120" placeholder="e.g. 5 Olonka, 2 sacks, 1 tonne"></div>
+        </div>
+        <div class="form-group"><label for="qNotes">Notes <span class="opt">(optional)</span></label><textarea id="qNotes" name="notes" rows="2" maxlength="500"></textarea></div>
+        <button class="btn btn-block" type="submit">Send request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Track order -->
+  <div class="modal" id="trackModal" role="dialog" aria-modal="true" aria-labelledby="trackTitle" hidden>
+    <div class="modal-content">
+      <button class="icon-close close-modal" type="button" data-close aria-label="Close"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#x"/></svg></button>
+      <h2 class="modal-title" id="trackTitle">Track your order</h2>
+      <form class="stack" id="trackForm" novalidate>
+        <div class="form-row">
+          <div class="form-group"><label for="tRef">Order number</label><input id="tRef" name="ref" class="upper" required maxlength="20" placeholder="NTN-XXXXXX"></div>
+          <div class="form-group"><label for="tPhone">Phone used</label><input id="tPhone" name="phone" type="tel" inputmode="tel" required maxlength="16"></div>
+        </div>
+        <button class="btn btn-block" type="submit">Track</button>
+      </form>
+      <div id="trackResult" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- Account -->
+  <div class="modal" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle" hidden>
+    <div class="modal-content">
+      <button class="icon-close close-modal" type="button" data-close aria-label="Close"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#x"/></svg></button>
+      <h2 class="modal-title" id="accountTitle">Account</h2>
+      <div id="guestTabs">
+        <form class="stack otp-step" id="otpPhoneForm" novalidate>
+          <p class="modal-sub">Sign in or create an account with your mobile number. We'll text you a 6-digit code.</p>
+          <div class="form-group"><label for="otpPhone">Mobile number</label><input id="otpPhone" name="phone" type="tel" inputmode="tel" required maxlength="16" autocomplete="tel" placeholder="024 123 4567"></div>
+          <div class="form-error" role="alert" hidden></div>
+          <button class="btn btn-block" type="submit">Send code</button>
+          <p class="fine-print">By continuing you agree to receive an SMS. Standard network rates may apply. Staff? <a class="text-link inline" href="/admin">Admin sign-in</a></p>
+        </form>
+        <form class="stack otp-step" id="otpCodeForm" novalidate hidden>
+          <p class="modal-sub">Enter the code we sent to <b id="otpPhoneShown"></b>. <button type="button" class="text-link inline" id="otpChange">Change number</button></p>
+          <div class="form-group"><label for="otpCode">6-digit code</label><input id="otpCode" name="code" class="otp-input" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="one-time-code" placeholder="••••••"></div>
+          <p class="hint dev-hint" id="otpDevHint" hidden></p>
+          <div class="form-error" role="alert" hidden></div>
+          <button class="btn btn-block" type="submit">Verify &amp; continue</button>
+          <button class="btn btn-outline btn-block" type="button" id="otpResend" disabled>Resend code</button>
+          <p class="fine-print">Never share this code. Ntintan will never ask for it.</p>
+        </form>
+        <form class="stack otp-step" id="otpProfileForm" novalidate hidden>
+          <p class="modal-sub">Welcome to Ntintan! Just a few details to finish creating your account.</p>
+          <div class="form-group"><label for="pfName">Full name</label><input id="pfName" name="name" required maxlength="80" autocomplete="name"></div>
+          <div class="form-row">
+            <div class="form-group"><label for="pfEmail">Email <span class="opt">(optional)</span></label><input id="pfEmail" name="email" type="email" maxlength="254" autocomplete="email"></div>
+            <div class="form-group"><label for="pfType">I'm shopping as</label><select id="pfType" name="accountType"><option value="household">Household</option><option value="restaurant">Restaurant / Hotel</option><option value="school">School / Caterer</option><option value="farmer">Farmer</option></select></div>
+          </div>
+          <label class="check"><input type="checkbox" name="acceptTerms" required> <span>I am 18 or older and agree to the <a href="/terms" target="_blank" rel="noopener">Terms of Sale</a> and <a href="/privacy" target="_blank" rel="noopener">Privacy Notice</a>.</span></label>
+          <label class="check"><input type="checkbox" name="marketingOptIn"> <span>Send me harvest prices and offers by SMS or email (optional, you can stop any time).</span></label>
+          <div class="form-error" role="alert" hidden></div>
+          <button class="btn btn-block" type="submit">Create account</button>
+        </form>
+      </div>
+      <div id="userTabs" hidden>
+        <div class="terms-banner" id="termsBanner" hidden><p>We've updated our <a href="/terms" target="_blank" rel="noopener">Terms of Sale</a> and <a href="/privacy" target="_blank" rel="noopener">Privacy Notice</a>.</p><button class="btn btn-sm" type="button" id="acceptTermsBtn">Accept &amp; continue</button></div>
+        <div class="account-head"><div><b id="acName"></b><small id="acEmail"></small></div><button class="btn btn-outline btn-sm" type="button" id="logoutBtn"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#logout"/></svg> Sign out</button></div>
+        <div class="tabs" role="tablist">
+          <button class="tab-btn active" type="button" role="tab" data-tab="wallet">Ogya Wallet</button>
+          <button class="tab-btn" type="button" role="tab" data-tab="orders">Orders</button>
+          <button class="tab-btn" type="button" role="tab" data-tab="mycoupons">Coupons</button>
+          <button class="tab-btn" type="button" role="tab" data-tab="profile">Profile</button>
+        </div>
+        <div class="tab-content active" id="tab-wallet">
+          <div class="ogya-box"><small>Your balance</small><b id="wBal">0 OGY</b><small id="wGhs">≈ GH₵0.00</small></div>
+          <form class="stack topup-form" id="topupForm" novalidate>
+            <div class="form-group"><label for="topAmt">Top up amount (GH₵)</label>
+              <div class="preset-row" id="topPresets"><button type="button" class="btn btn-outline btn-sm" data-amt="20">GH₵20</button><button type="button" class="btn btn-outline btn-sm" data-amt="50">GH₵50</button><button type="button" class="btn btn-outline btn-sm" data-amt="100">GH₵100</button><button type="button" class="btn btn-outline btn-sm" data-amt="200">GH₵200</button></div>
+              <input id="topAmt" name="amount" type="number" inputmode="decimal" min="1" max="5000" step="0.01" required placeholder="e.g. 50">
+              <span class="hint" id="topHint">You'll receive 100 OGY for every GH₵1.</span>
+            </div>
+            <div class="form-group"><label for="topMethod">Pay with</label><select id="topMethod" name="method"><option value="momo">Mobile Money</option><option value="card">Debit / credit card</option></select></div>
+            <button class="btn btn-ogya btn-block" type="submit"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#coins"/></svg> Top up wallet</button>
+          </form>
+          <p class="muted small" id="topupDisabled" hidden>Online top-ups are not available yet. Visit any Ntintan hub to top up with cash.</p>
+          <h4 class="mini-title">Recent activity</h4>
+          <div id="walletTx"></div>
+        </div>
+        <div class="tab-content" id="tab-orders"><div id="myOrders"></div></div>
+        <div class="tab-content" id="tab-mycoupons"><div id="myCoupons"></div></div>
+        <div class="tab-content" id="tab-profile">
+          <form class="stack" id="profileForm" novalidate>
+            <div class="form-group"><label for="prName">Full name</label><input id="prName" name="name" required maxlength="80" autocomplete="name"></div>
+            <div class="form-row">
+              <div class="form-group"><label for="prPhone">Mobile number</label><input id="prPhone" disabled><span class="hint">Your sign-in number. Contact us to change it.</span></div>
+              <div class="form-group"><label for="prEmail">Email <span class="opt">(optional)</span></label><input id="prEmail" name="email" type="email" maxlength="254" autocomplete="email"></div>
+            </div>
+            <div class="form-group"><label for="prType">I'm shopping as</label><select id="prType" name="accountType"><option value="household">Household</option><option value="restaurant">Restaurant / Hotel</option><option value="school">School / Caterer</option><option value="farmer">Farmer</option></select></div>
+            <label class="check"><input type="checkbox" name="marketingOptIn" id="prMarketing"> <span>Send me harvest prices and offers</span></label>
+            <div class="form-error" role="alert" hidden></div>
+            <button class="btn btn-block" type="submit">Save profile</button>
+          </form>
+          <h4 class="mini-title">Your data</h4>
+          <p class="small muted">Under Ghana's Data Protection Act you can get a copy of your data or delete your account. <a class="text-link inline" href="/privacy" target="_blank" rel="noopener">Privacy Notice</a></p>
+          <div class="preset-row"><a class="btn btn-outline btn-sm" href="/api/me/export" id="exportBtn" download>Download my data</a><button class="btn btn-outline btn-sm danger" type="button" id="deleteBtn">Delete my account</button></div>
+          <form class="stack delete-box" id="deleteForm" novalidate hidden>
+            <p class="small">Deleting removes your name, phone, email and addresses. Order records are kept without your identity for tax purposes. <b>This cannot be undone.</b></p>
+            <p class="small up" id="deleteWalletNote" hidden></p>
+            <label class="check" id="forfeitRow" hidden><input type="checkbox" name="confirmForfeit"> <span>I give up my remaining Ogya balance (or <a href="/terms#ogya" target="_blank" rel="noopener">ask us for a refund</a> first).</span></label>
+            <div class="form-group"><label for="delConfirm">Type DELETE to confirm</label><input id="delConfirm" name="confirm" required autocomplete="off" pattern="DELETE"></div>
+            <div class="form-error" role="alert" hidden></div>
+            <button class="btn btn-block danger-solid" type="submit">Permanently delete my account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment result -->
+  <div class="modal" id="payResultModal" role="dialog" aria-modal="true" aria-labelledby="payResultTitle" hidden>
+    <div class="modal-content">
+      <div class="success-view">
+        <div class="tick" id="payResultIcon"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#refresh"/></svg></div>
+        <h3 id="payResultTitle">Confirming your payment…</h3>
+        <p id="payResultMsg">Please wait a moment.</p>
+        <div class="ref" id="payResultRef" hidden></div>
+        <div><button class="btn" type="button" data-close>Continue</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat -->
+  <button class="chat-bubble" id="chatBubble" type="button" aria-label="Open help assistant" aria-expanded="false" aria-controls="chatWindow"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#chat"/></svg></button>
+  <div class="chat-window" id="chatWindow" role="dialog" aria-label="Ntintan help" hidden>
+    <div class="chat-header"><div>Ntintan Help<small>Answers to common questions</small></div><button type="button" id="closeChat" aria-label="Close"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#x"/></svg></button></div>
+    <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+    <div class="quick-replies" id="quickReplies"><button type="button">Delivery</button><button type="button">Payments</button><button type="button">Food coupons</button><button type="button">Measures</button><button type="button">Sell my produce</button></div>
+    <form class="chat-input" id="chatForm"><label for="chatInput" class="sr-only">Message</label><input type="text" id="chatInput" placeholder="Type your question…" maxlength="300" autocomplete="off"><button type="submit" aria-label="Send"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#send"/></svg></button></form>
+  </div>
+
+  <div class="toast-stack" id="toasts" aria-live="polite" aria-atomic="false"></div>
+  <noscript><div class="noscript">Ntintan needs JavaScript enabled to shop online. You can still call us to order.</div></noscript>
+</body>
+</html>

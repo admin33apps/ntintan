@@ -1,0 +1,75 @@
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+services:
+  app:
+    build: .
+    image: ntintan:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_PATH: /data/ntintan.db
+      BACKUP_DIR: /data/backups
+      TRUST_PROXY: "1"
+    volumes:
+      - ntintan-data:/data
+    expose:
+      - "3000"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    logging: *logging
+
+  # Nightly online backup of the database (keeps the latest 30 on the ntintan-data volume).
+  # Copy /data/backups off the server regularly (see README → Backups).
+  backup:
+    image: ntintan:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_PATH: /data/ntintan.db
+      BACKUP_DIR: /data/backups
+    volumes:
+      - ntintan-data:/data
+    entrypoint: ["/bin/sh", "-c", "while true; do node --disable-warning=ExperimentalWarning scripts/backup.js; sleep 86400; done"]
+    healthcheck:
+      disable: true
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    depends_on:
+      app:
+        condition: service_healthy
+    logging: *logging
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in .env (e.g. DOMAIN=ntintan.com)}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      app:
+        condition: service_healthy
+    logging: *logging
+
+volumes:
+  ntintan-data:
+  caddy-data:
+  caddy-config:

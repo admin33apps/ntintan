@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Ntintan Groceries</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <script type="module" src="/js/admin.js"></script>
+</head>
+<body class="admin">
+  <header class="admin-bar">
+    <a href="/" class="logo">NTINTAN <span class="admin-tag">Admin</span></a>
+    <div class="admin-user" id="adminUser" hidden><span id="adminEmail"></span><button class="btn btn-outline btn-sm" type="button" id="adminLogout">Sign out</button></div>
+  </header>
+
+  <main class="admin-main">
+    <section id="loginView" class="admin-login" hidden>
+      <div class="panel">
+        <h1 class="modal-title">Admin sign in</h1>
+        <form class="stack" id="adminLogin" novalidate>
+          <div class="form-group"><label for="aEmail">Email</label><input id="aEmail" name="email" type="email" required autocomplete="username"></div>
+          <div class="form-group"><label for="aPass">Password</label><input id="aPass" name="password" type="password" required autocomplete="current-password"></div>
+          <div class="form-error" role="alert" hidden></div>
+          <button class="btn btn-block" type="submit">Continue</button>
+        </form>
+        <form class="stack" id="adminOtp" novalidate hidden>
+          <p class="modal-sub">We sent a 6-digit code to <b id="adminPhoneHint"></b>.</p>
+          <div class="form-group"><label for="aCode">Verification code</label><input id="aCode" name="code" class="otp-input" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="one-time-code"></div>
+          <p class="hint dev-hint" id="adminDevHint" hidden></p>
+          <div class="form-error" role="alert" hidden></div>
+          <button class="btn btn-block" type="submit">Verify &amp; sign in</button>
+          <button class="btn btn-outline btn-block" type="button" id="adminBack">Start again</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="appView" hidden>
+      <nav class="admin-tabs" role="tablist" aria-label="Admin sections">
+        <button type="button" role="tab" data-view="dashboard" class="active">Dashboard</button>
+        <button type="button" role="tab" data-view="orders">Orders</button>
+        <button type="button" role="tab" data-view="products">Products & Prices</button>
+        <button type="button" role="tab" data-view="coupons">Coupons</button>
+        <button type="button" role="tab" data-view="farmers">Farmers</button>
+        <button type="button" role="tab" data-view="leads">Leads</button>
+        <button type="button" role="tab" data-view="users">Customers</button>
+        <button type="button" role="tab" data-view="sms">SMS</button>
+        <button type="button" role="tab" data-view="audit">Audit log</button>
+      </nav>
+      <div id="view" class="admin-view" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle" hidden>
+    <div class="modal-content">
+      <button class="icon-close close-modal" type="button" data-close aria-label="Close"><svg class="i" aria-hidden="true"><use href="/img/icons.svg#x"/></svg></button>
+      <h2 class="modal-title" id="adminModalTitle"></h2>
+      <div id="adminModalBody"></div>
+    </div>
+  </div>
+  <div class="overlay" id="overlay" hidden></div>
+  <div class="toast-stack" id="toasts" aria-live="polite"></div>
+</body>
+</html>

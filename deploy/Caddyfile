@@ -1,0 +1,18 @@
+# DOMAIN comes from .env (e.g. DOMAIN=ntintan.com). Caddy obtains and renews HTTPS certificates automatically.
+{$DOMAIN} {
+	encode zstd gzip
+	reverse_proxy app:3000 {
+		header_up X-Forwarded-For {remote_host}
+	}
+	request_body {
+		max_size 1MB
+	}
+	header -Server
+	log {
+		output stdout
+		format json
+	}
+}
+www.{$DOMAIN} {
+	redir https://{$DOMAIN}{uri} permanent
+}

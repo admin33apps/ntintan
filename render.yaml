@@ -1,0 +1,35 @@
+# Render Blueprint: free investor preview of Ntintan (demo mode).
+# Render dashboard → New → Blueprint → pick this repository. See README → "Investor preview on Render".
+# Free instances sleep after ~15 minutes without visitors (the next visit takes about a minute to wake),
+# and the database is reset on every restart or deploy. The catalogue and the demo admin are recreated automatically.
+services:
+  - type: web
+    name: ntintan
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DEMO_MODE
+        value: "1"
+      - key: PAYMENTS_MODE
+        value: simulate
+      - key: SMS_MODE
+        value: log
+      - key: TRUST_PROXY
+        value: "1"
+      - key: APP_SECRET
+        generateValue: true
+      # Asked for when you create the Blueprint:
+      - key: PUBLIC_URL        # https://your-domain, e.g. https://ntintan.space (must match the address investors use)
+        sync: false
+      - key: ADMIN_EMAIL       # demo admin sign-in for investors
+        sync: false
+      - key: ADMIN_PASSWORD    # 12+ characters; share it only with investors
+        sync: false
+      - key: ADMIN_PHONE       # any valid Ghana number (codes are shown on screen in demo mode)
+        sync: false
